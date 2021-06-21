@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="hello!" />
+        <meta name="description" content="just blog" />
       </Head>
       <div>
         <Header {...headerProps}></Header>
@@ -24,9 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </div>
       </div>
-      {/* <div>
+      <div>
         <Footer></Footer>
-      </div> */}
+      </div>
     </div>
   );
 }

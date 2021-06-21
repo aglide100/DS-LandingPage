@@ -9,13 +9,13 @@ export default function Home() {
     <div>
       <Section article={sectionArticle} id={"article1"}></Section>
       <br />
-      {/* <Section article={sectionArticle} id={"article2"}></Section>
+      <Section article={sectionArticle} id={"article2"}></Section>
       <br />
       <Section article={sectionArticle} id={"article3"}></Section>
       <br />
       <Section article={sectionArticle} id={"article4"}></Section>
       <br />
-      <Section article={sectionArticle} id={"article5"}></Section> */}
+      <Section article={sectionArticle} id={"article5"}></Section>
     </div>
   );
 }

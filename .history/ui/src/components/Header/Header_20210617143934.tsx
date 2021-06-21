@@ -1,6 +1,10 @@
 import React from "react";
 
-export type HeaderProps = {};
+export type HeaderProps = {
+  signIn: () => void;
+  signUp: () => void;
+  onClickGoToHome: () => void;
+};
 
 export function Header(props: HeaderProps) {
   return (

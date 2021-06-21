@@ -20,13 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div>
         <Header {...headerProps}></Header>
-        <div className="flex justify-center">
+        <div className="flex justify-center h-96">
           <Component {...pageProps} />
         </div>
       </div>
-      {/* <div>
+      <div>
         <Footer></Footer>
-      </div> */}
+      </div>
     </div>
   );
 }
