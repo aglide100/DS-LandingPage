@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-COPY . . 
+COPY /ui . 
 
 RUN npm install --no-optional
 
