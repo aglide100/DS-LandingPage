@@ -4,11 +4,11 @@ import { Footer } from "../src/components/Footer/Footer";
 import type { AppProps } from "next/app";
 import "../src/_css/common.css";
 import "../styles/globals.css";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  // const router = useRouter();
 
   const headerProps: HeaderProps = {};
   return (
@@ -24,9 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </div>
       </div>
-      {/* <div>
+      <div>
         <Footer></Footer>
-      </div> */}
+      </div>
     </div>
   );
 }

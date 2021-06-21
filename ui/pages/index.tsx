@@ -1,21 +1,62 @@
 import React from "react";
-import { Section, SectionProps } from "../src/components/Section/Section";
-import { SectionArticle1 } from "../src/components/Section/Section.stories";
+import LoadingComponent from "../src/components/Loading/Loading";
+import dynamic from "next/dynamic";
+
+const Section1 = dynamic(
+  () =>
+    import("../src/components/layout/ZoomSection/ZoomSection").catch((err) => {
+      return () => <p>Sorry, failed to load {err}</p>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
+const Section2 = dynamic(
+  () =>
+    import("../src/components/layout/BounceSection/BounceSection").catch(
+      (err) => {
+        return () => <p>Sorry, failed to load {err} </p>;
+      }
+    ),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
+const Section3 = dynamic(
+  () =>
+    import("../src/components/layout/ZoomSection/ZoomSection").catch((err) => {
+      return () => <p>Sorry, failed to load {err} </p>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
+const Section4 = dynamic(
+  () =>
+    import("../src/components/layout/BounceSection/BounceSection").catch(
+      (err) => {
+        return () => <p>Sorry, failed to load {err} </p>;
+      }
+    ),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
+const CatSection = dynamic(
+  () =>
+    import("../src/components/layout/Cat/Cat").catch((err) => {
+      return () => <p>Sorry, failed to load {err} </p>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
 
 export default function Home() {
-  const sectionArticle = SectionArticle1.args?.article?.toString()!;
-
   return (
     <div>
-      <Section article={sectionArticle} id={"article1"}></Section>
       <br />
-      {/* <Section article={sectionArticle} id={"article2"}></Section>
+      <Section1 />
+      <Section2 />
+      <CatSection isFirst={true} isSecond={false} />
       <br />
-      <Section article={sectionArticle} id={"article3"}></Section>
-      <br />
-      <Section article={sectionArticle} id={"article4"}></Section>
-      <br />
-      <Section article={sectionArticle} id={"article5"}></Section> */}
+      <Section3 />
+      <Section4 />
+      <CatSection isFirst={false} isSecond={true} />
     </div>
   );
 }

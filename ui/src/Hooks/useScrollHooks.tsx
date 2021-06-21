@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRef, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 
 const useScrollHooks = () => {
   const [state, setState] = useState({
