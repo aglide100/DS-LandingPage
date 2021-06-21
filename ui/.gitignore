@@ -11,7 +11,7 @@
 /out/
 
 # storybook
-/storybook-static
+/storybook-static/
 
 # production
 /build
