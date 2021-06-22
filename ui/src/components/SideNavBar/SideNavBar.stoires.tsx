@@ -1,6 +1,6 @@
 import React from "react";
 import { SideNavBar, SideNavBarProps } from "./SideNavBar";
-import { Meta, Story } from "@storybook/react/types-6-0";
+import { Meta, Story } from "@storybook/react";
 
 export default {
   title: "Components/SideNavBar",

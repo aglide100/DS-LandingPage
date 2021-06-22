@@ -7,7 +7,7 @@ const Section1 = dynamic(
     import("../src/components/layout/ZoomSection/ZoomSection").catch((err) => {
       return () => <p>Sorry, failed to load {err}</p>;
     }),
-  { loading: () => <LoadingComponent />, ssr: false }
+  { loading: () => <LoadingComponent />, ssr: true }
 );
 
 const Section2 = dynamic(
@@ -17,7 +17,7 @@ const Section2 = dynamic(
         return () => <p>Sorry, failed to load {err} </p>;
       }
     ),
-  { loading: () => <LoadingComponent />, ssr: false }
+  { loading: () => <LoadingComponent />, ssr: true }
 );
 
 const Section3 = dynamic(
@@ -25,7 +25,7 @@ const Section3 = dynamic(
     import("../src/components/layout/ZoomSection/ZoomSection").catch((err) => {
       return () => <p>Sorry, failed to load {err} </p>;
     }),
-  { loading: () => <LoadingComponent />, ssr: false }
+  { loading: () => <LoadingComponent />, ssr: true }
 );
 
 const Section4 = dynamic(
@@ -35,7 +35,7 @@ const Section4 = dynamic(
         return () => <p>Sorry, failed to load {err} </p>;
       }
     ),
-  { loading: () => <LoadingComponent />, ssr: false }
+  { loading: () => <LoadingComponent />, ssr: true }
 );
 
 const CatSection = dynamic(

@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\"",
     "export": "next export",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint --fix .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "keywords": [],
   "author": "",
@@ -22,23 +24,29 @@
     "@storybook/addon-links": "^6.1.11",
     "@storybook/react": "^3.4.12",
     "@types/react": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "eslint": "^7.29.0",
     "eslint-config-next": "^11.0.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "ts-loader": "^9.1.1",
     "typescript": "^4.2.3",
     "webpack": "^5.39.1"
   },
   "dependencies": {
     "@craco/craco": "^6.1.1",
+    "@next/bundle-analyzer": "^11.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@types/classnames": "^2.2.11",
     "@types/next": "^9.0.0",
     "@types/react-dom": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@zeit/next-typescript": "^1.1.1",
     "autoprefixer": "^9.8.6",
     "create-next-app": "^11.0.0",
+    "eslint-config-prettier": "^8.3.0",
     "next": "^11.0.0",
     "postcss": "^7.0.35",
     "react": "^17.0.0",
@@ -46,7 +54,8 @@
     "react-reveal": "^1.2.0",
     "sharp": "^0.28.1",
     "styled-components": "^5.3.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
+    "typescript-eslint": "^0.0.1-alpha.0"
   },
   "description": ""
 }
