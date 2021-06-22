@@ -1,45 +1,41 @@
 module.exports = {
-  root: true,
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   env: {
     browser: true,
-    amd: true,
+    es2021: true,
     node: true,
   },
   extends: [
+    "next",
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended", // Make sure this is always the last element in the array.
+    "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: "module",
+  },
+  plugins: ["react", "@typescript-eslint"],
   rules: {
-    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "simple-import-sort/sort": "error",
-    "jsx-a11y/anchor-is-valid": [
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/ban-types": [
       "error",
       {
-        components: ["Link"],
-        specialLink: ["hrefLeft", "hrefRight"],
-        aspects: ["invalidHref", "preferButton"],
+        extendDefaults: true,
+        types: {
+          "{}": false,
+        },
       },
     ],
   },
+  settings: { react: { version: "detect" } },
 };

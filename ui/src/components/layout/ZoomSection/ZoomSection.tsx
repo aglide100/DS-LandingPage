@@ -3,7 +3,7 @@ import Zoom from "react-reveal/Zoom";
 
 export type ZoomSectionProps = {};
 
-const ZoomSection: React.FC<ZoomSectionProps> = ({}) => {
+const ZoomSection: React.FC<ZoomSectionProps> = () => {
   return (
     <div>
       <Zoom>

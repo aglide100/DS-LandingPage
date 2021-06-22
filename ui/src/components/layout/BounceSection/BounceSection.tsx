@@ -3,7 +3,7 @@ import Bounce from "react-reveal/Bounce";
 
 export type BounceSectionProps = {};
 
-const BounceSection: React.FC<BounceSectionProps> = ({}) => {
+const BounceSection: React.FC<BounceSectionProps> = () => {
   return (
     <div>
       <Bounce>
