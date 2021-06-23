@@ -14,17 +14,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="flex flex-col justify-between h-screen">
       <Head>
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Inter"
           rel="stylesheet"
-        />
+        /> */}
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="hello!" />
+        <title>Hello!</title>
       </Head>
       <div>
         <Header {...headerProps}></Header>
-        <div className="flex justify-center mt-24">
+        <div className="flex justify-center mt-24 mb-24">
           <Component {...pageProps} />
         </div>
       </div>

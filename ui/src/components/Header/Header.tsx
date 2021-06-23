@@ -18,7 +18,7 @@ export function Header() {
   return (
     <nav
       className={classNames(
-        "w-screen fixed left-0 top-0 box-border transition duration-500 z-10",
+        "group w-screen fixed left-0 top-0 box-border transition duration-500 z-10",
         {
           "h-10 bg-gray-300 bg-opacity-50 transform -translate-y-4 hover:translate-y-0 hover:bg-gray-500 hover:bg-opacity-100":
             scrollPosition > 100,
@@ -26,10 +26,18 @@ export function Header() {
         }
       )}
     >
-      <div className="flex justify-around items-center mt-3 mb-3">
-        <div className="cursor-pointer">Hello!</div>
-        <div className="cursor-pointer">Foo</div>
-        <div className="cursor-pointer">Bar</div>
+      <div
+        className={classNames(
+          "cursor-pointer flex justify-around items-center mt-3 mb-3 transition duration-500",
+          {
+            "text-gray-300 group-hover:text-black": scrollPosition > 100,
+            "text-black": scrollPosition < 100,
+          }
+        )}
+      >
+        <span>Hello!</span>
+        <span>Foo</span>
+        <span>Bar</span>
       </div>
     </nav>
   );
