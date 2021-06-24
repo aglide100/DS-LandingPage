@@ -1,5 +1,4 @@
 import React from "react";
-import Cat from "../Cat/Cat";
 import Fade from "react-reveal/Fade";
 const SampleSection1: React.FC = () => {
   return (

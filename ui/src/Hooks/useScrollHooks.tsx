@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import { useEffect } from "react";
 
-const useScrollHooks = () => {
-  const [state, setState] = useState({
-    x: 0,
-    y: 0,
-  });
+export type UseScrollHooksProps = {
+  receivedRef: React.RefObject<HTMLDivElement>;
+};
 
-  const onScroll = () => {
-    setState({ x: window.scrollX, y: window.scrollY });
-    console.log(state.x, state.y);
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+const useScrollHooks = ({ receivedRef }: UseScrollHooksProps) => {
+  const node = receivedRef;
+
+  const [isShow, setIsShow] = useState<boolean>();
+
+  const callBackFunction = useCallback(([entry]) => {
+    const { current } = node;
+    if (entry.isIntersecting) {
+      setIsShow(true);
+    } else {
+      setIsShow(false);
+    }
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callBackFunction);
+    if (node.current) observer.observe(node.current);
+
+    return () => {
+      if (node.current) observer.unobserve(node.current);
+    };
+  }, []);
+
+  return { isShow };
 };
 
 export default useScrollHooks;

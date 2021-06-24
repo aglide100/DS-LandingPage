@@ -1,1 +1,4 @@
-export { default as useScrollHooks } from "./useScrollHooks";
+export {
+  default as useScrollHooks,
+  default as useInterval,
+} from "./useScrollHooks";

@@ -1,33 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Tada from "react-reveal/Tada";
 import Fade from "react-reveal/Fade";
+import { useScrollHooks } from "../../../Hooks";
+import { UseScrollHooksProps } from "../../../Hooks/useScrollHooks";
 
 const IntroBlock: React.FC = () => {
   const node = useRef<HTMLDivElement>(null);
-  const [isShow, setIsShow] = useState<boolean>(true);
+  const [count, setCount] = useState<number>(0);
 
-  const callbackFunction = useCallback(([entry]) => {
-    const { current } = node;
-    if (entry.isIntersecting) {
-      setIsShow(true);
-    } else {
-      setIsShow(false);
-    }
-  }, []);
-
-  const options = {
-    root: null,
-    threshold: 1.0,
+  const useScrollHooksProps: UseScrollHooksProps = {
+    receivedRef: node,
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, options);
-    if (node.current) observer.observe(node.current);
+  const result = useScrollHooks(useScrollHooksProps);
 
-    return () => {
-      if (node.current) observer.unobserve(node.current);
-    };
-  }, [node, options]);
+  useInterval(
+    () => {
+      setCount(count + 1);
+    },
+    result.isShow ? 5000 : null
+  );
 
   return (
     <div
@@ -35,7 +27,7 @@ const IntroBlock: React.FC = () => {
       className="w-full flex flex-col align-middle justify-center mb-48"
     >
       <div className="w-full flex justify-center transform rotate-6">
-        <Tada spy={isShow} delay={300}>
+        <Tada spy={count} delay={300}>
           <span className="text-3xl mt-10">뭔가 있어보이는 제목</span>
         </Tada>
       </div>
@@ -47,5 +39,27 @@ const IntroBlock: React.FC = () => {
     </div>
   );
 };
+
+function useInterval(callback, delay) {
+  const savedCallBack = useRef();
+
+  useEffect(() => {
+    savedCallBack.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      if (savedCallBack.current == undefined) {
+        return;
+      } else {
+        savedCallBack.current();
+      }
+    }
+    if (delay !== null) {
+      const id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
 
 export default IntroBlock;
