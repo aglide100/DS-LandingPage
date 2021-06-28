@@ -1,20 +1,23 @@
 import React from "react";
-import Image from "next/image";
 
 export const IntroSection: React.FC = () => {
   return (
-    <div>
-      <div className="flex flex-col w-full h-96 bg-fixed ">
-        <Image
-          width="100%"
-          height="100%"
-          src="/cat1.jpeg"
-          className="z-0 "
-          alt="background!!"
-        ></Image>
+    <div className="w-screen z-20">
+      <div className="flex flex-col min-h-screen">
+        <video
+          autoPlay
+          muted
+          className="fixed top-0 w-screen h-screen opacity-95 overflow-hidden"
+          style={{ zIndex: -1 }}
+        >
+          <source
+            src={require("../../../../public/intro.mp4")}
+            type="video/mp4"
+          />
+        </video>
       </div>
 
-      <div className="z-10 bg-yellow-400 h-32"></div>
+      <div className="z-10  bg-yellow-400 w-screen h-screen h-32 "></div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 const SampleSection1: React.FC = () => {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-screen z-20 flex justify-center">
       <div className="w-96">
         <Fade bottom triggerOnce={false} delay={200}>
           <span>

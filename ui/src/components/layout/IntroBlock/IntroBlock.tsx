@@ -24,7 +24,7 @@ const IntroBlock: React.FC = () => {
   return (
     <div
       ref={node}
-      className="w-full flex flex-col align-middle justify-center mb-48"
+      className="z-20 w-screen bg-white flex flex-col align-middle justify-center mb-48"
     >
       <div className="w-full flex justify-center transform rotate-6">
         <Tada spy={count} delay={300}>
