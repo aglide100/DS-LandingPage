@@ -1,4 +1,4 @@
-export DockerService=/home/ubuntu/scroll-react
+export DockerService=/home/ubuntu/DS-LandingPage
 
 #!/bin/bash
 
