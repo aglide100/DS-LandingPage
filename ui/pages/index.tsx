@@ -3,7 +3,16 @@ import LoadingComponent from "../src/components/Loading/Loading";
 import dynamic from "next/dynamic";
 import IntroBlock from "../src/components/layout/IntroBlock/IntroBlock";
 import Section1 from "../src/components/layout/BounceSection/BounceSection";
-import IntroSection from "../src/components/layout/IntroSection/IntroSection";
+
+const IntroSection = dynamic(
+  () =>
+    import("../src/components/layout/IntroSection/IntroSection").catch(
+      (err) => {
+        return () => <p>Sorry, failed to load {err} </p>;
+      }
+    ),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
 
 const Section2 = dynamic(
   () =>
@@ -47,16 +56,17 @@ const Section4 = dynamic(
 export default function Home() {
   return (
     <div className="p-8">
-      <IntroSection />
-      <IntroBlock />
+      <div className="z-0">
+        <IntroSection />
+      </div>
+      <div className="bg-white">
+        <IntroBlock />
 
-      <Section1 />
-      <Section2 />
-      <Section1 />
-      <Section2 />
-
-      <Section3 />
-      <Section4 />
+        <Section1 />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+      </div>
     </div>
   );
 }

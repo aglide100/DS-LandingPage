@@ -5,7 +5,7 @@ export type ZoomSectionProps = {};
 
 const ZoomSection: React.FC<ZoomSectionProps> = () => {
   return (
-    <div>
+    <div className="w-screen z-20">
       <Zoom triggerOnce={false} delay={500}>
         <div>
           dsadsa dsa d asd sad asd as dsa dtest Lorem ipsum dolor sit amet
