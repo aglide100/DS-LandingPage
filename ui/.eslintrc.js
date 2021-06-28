@@ -27,6 +27,7 @@ module.exports = {
     "@next/next/no-page-custom-font": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/ban-types": [
       "error",
       {
