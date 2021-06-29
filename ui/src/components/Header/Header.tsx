@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
+
+import { useGetScroll, UseScrollHooksProps } from "../../Hooks";
 
 export type HeaderProps = {};
 
 export function Header() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  const node = useRef<HTMLDivElement>(null);
+
+  const useScrollHooksProps: UseScrollHooksProps = {
+    receivedRef: node,
   };
-  useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-    return () => {
-      window.removeEventListener("scroll", updateScroll);
-    };
-  });
+
+  const result = useGetScroll(useScrollHooksProps);
 
   return (
     <nav
@@ -21,8 +20,11 @@ export function Header() {
         "group w-screen fixed left-0 top-0 box-border transition duration-500 z-10",
         {
           "h-10 bg-gray-300 bg-opacity-50 transform -translate-y-4 hover:translate-y-0 hover:bg-gray-500 hover:bg-opacity-100":
-            scrollPosition > 100,
-          "h-20 bg-white ": scrollPosition < 100,
+            result.scrollY > 100,
+          "h-20 bg-white ":
+            result.scrollY < 100 || result.scrollDirection == "down"
+              ? true
+              : false,
         }
       )}
     >
@@ -30,8 +32,11 @@ export function Header() {
         className={classNames(
           "cursor-pointer flex justify-around items-center mt-3 mb-3 transition duration-500",
           {
-            "text-gray-300 group-hover:text-black": scrollPosition > 100,
-            "text-black": scrollPosition < 100,
+            "text-gray-300 group-hover:text-black": result.scrollY > 100,
+            "text-black":
+              result.scrollY < 100 || result.scrollDirection == "down"
+                ? true
+                : false,
           }
         )}
       >
