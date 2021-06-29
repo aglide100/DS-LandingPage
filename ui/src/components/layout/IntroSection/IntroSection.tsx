@@ -30,7 +30,7 @@ export const IntroSection: React.FC = () => {
 
   return (
     <div className="w-screen z-20">
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col">
         <video
           autoPlay={true}
           muted
