@@ -34,7 +34,7 @@ export const IntroSection: React.FC = () => {
         <video
           autoPlay={true}
           muted
-          className="fixed top-0 w-screen opacity-95 overflow-hidden"
+          className="fixed top-0 w-screen h-screen opacity-95 overflow-hidden"
           style={{ zIndex: -1 }}
           ref={videoRef}
         >
