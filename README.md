@@ -1,6 +1,7 @@
-# scroll-react
+# DS-LandingPage
 
-146.56.166.229
+[devServer][devserverlink]
+[storybookPreview][storybookpreviewlink]
 
 ## Dependency
 
@@ -12,7 +13,7 @@
 
 > [tailwindCss][tailwindcsslink]
 
-> [next-images]{next-imageslink}
+> [next-images][next-imageslink]
 
 [react-reveal-link]: https://www.react-reveal.com/
 [tailwindcsslink]: https://tailwindcss.com/
@@ -20,3 +21,5 @@
 [nextjslink]: https://nextjs.org/
 [golanglink]: https://golang.org/
 [next-imageslink]: https://github.com/twopluszero/next-images
+[storybookpreviewlink]: https://aglide100.github.io/DS-LandingPage/
+[devserverlink]: http://146.56.166.229
