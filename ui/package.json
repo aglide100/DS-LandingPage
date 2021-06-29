@@ -14,7 +14,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "keywords": [],
-  "author": "",
+  "author": "aglide100@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.10",
