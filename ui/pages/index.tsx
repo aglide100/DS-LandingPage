@@ -60,8 +60,6 @@ export default function Home() {
         <IntroSection />
       </div>
       <div className="bg-white">
-        <IntroBlock />
-
         <Section1 />
         <Section2 />
         <Section3 />
