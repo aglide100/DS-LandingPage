@@ -2,3 +2,5 @@
 
 .history/
 /storybook-static/
+
+.DS_Store

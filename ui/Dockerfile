@@ -6,7 +6,8 @@ COPY package*.json ./
 
 COPY . . 
 
-RUN npm install --no-optional
+RUN npm instal --legacy-peer-deps
+# RUN npm install --no-optional
 
 RUN npm run build
 

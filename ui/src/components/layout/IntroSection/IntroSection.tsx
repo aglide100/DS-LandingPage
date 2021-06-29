@@ -30,11 +30,11 @@ export const IntroSection: React.FC = () => {
 
   return (
     <div className="w-screen z-20">
-      <div className="flex flex-col">
+      <div className="flex flex-col h-screen">
         <video
           autoPlay={true}
           muted
-          className="fixed top-0 w-screen h-screen opacity-95 overflow-hidden"
+          className="fixed top-0 w-screen opacity-95 overflow-hidden"
           style={{ zIndex: -1 }}
           ref={videoRef}
         >
