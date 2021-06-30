@@ -1,15 +1,23 @@
-export Directory=/home/ubuntu/DS-LandingPage/ui
+export DockerService=/home/ubuntu/DS-LandingPage
 
 #!/bin/bash
 
-echo "====> install npm package"
-cd $Directory
-npm install
+echo "====> Service Close Docker-compose"
+cd $DockerService
+docker-compose down --remove-orphans
 
-echo "====> build npm package"
-cd $Directory
-npm run build
+echo "====> Remove docker network"
+cd $DockerService
+docker network prune -f
 
-echo "====> start next js app"
-cd $Directory
-npm run start-http
+echo "====> Remove unused Conataner"
+cd $DockerService
+docker image prune -a -f
+
+echo "====> Build Docker-Compose"
+cd $DockerService
+docker-compose build
+
+echo "====> Starting Docker-Compse daemon"
+cd $DockerService
+docker-compose up -d
