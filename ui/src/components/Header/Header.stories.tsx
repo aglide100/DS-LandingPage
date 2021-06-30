@@ -11,13 +11,7 @@ const Template: Story<HeaderProps> = (args) => <Header {...args} />;
 
 export const HeaderInfo = Template.bind({});
 HeaderInfo.args = {
-  signIn: () => {
-    alert("wip");
-  },
-  signUp: () => {
-    alert("wip");
-  },
-  onClickGoToHome: () => {
-    alert("wip");
-  },
+  isShow: true,
+  scrollDirection: "up",
+  scrollY: 0,
 };

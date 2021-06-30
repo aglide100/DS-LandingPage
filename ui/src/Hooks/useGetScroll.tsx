@@ -13,9 +13,6 @@ const useScrollHooks = ({ receivedRef }: UseScrollHooksProps) => {
   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
   const [scrollY, setScrollY] = useState<number>(0);
   const [scrollDirection, setScrollDirection] = useState<direction>();
-  // const [bodyOffset, setBodyOffset] = useState(
-  //   document.body.getBoundingClientRect()
-  // );
   const [isShow, setIsShow] = useState<boolean>();
 
   const callBackFunction = useCallback(([entry]) => {
@@ -29,7 +26,6 @@ const useScrollHooks = ({ receivedRef }: UseScrollHooksProps) => {
 
   const listener = (e) => {
     const rect = document.body.getBoundingClientRect();
-    // setBodyOffset(document.body.getBoundingClientRect());
     setScrollY(-rect.top);
     setScrollDirection(lastScrollTop > -rect.top ? "down" : "up");
     setLastScrollTop(-rect.top);

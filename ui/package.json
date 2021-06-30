@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "start-http": "next start -p 80",
     "test": "echo \"Error: no test specified\"",
     "export": "next export",
     "storybook": "start-storybook -p 6006",
