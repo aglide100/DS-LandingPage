@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Tada from "react-reveal/Tada";
 
-import { useGetScroll, UseScrollHooksProps } from "../../../Hooks";
+import { useGetScroll, UseScrollHooksProps } from "../../../../Hooks";
 
 export const IntroSection: React.FC = () => {
   const node = useRef<HTMLDivElement>(null);
@@ -29,23 +29,23 @@ export const IntroSection: React.FC = () => {
   }
 
   return (
-    <div className="w-screen z-20">
+    <div className="w-full z-20">
       <div className="flex flex-col h-screen">
         <video
           autoPlay={true}
           muted
-          className="fixed top-0 w-screen opacity-95 overflow-hidden"
-          style={{ zIndex: -1 }}
+          className="fixed top-0 w-full h-screen sm:h-auto md:h-auto opacity-95 overflow-hidden"
+          style={{ zIndex: -1, objectFit: "fill" }}
           ref={videoRef}
         >
           <source
-            src={require("../../../../public/intro.mp4")}
+            src={require("../../../../../public/intro.mp4")}
             type="video/mp4"
           />
         </video>
       </div>
 
-      <div className="z-10  bg-yellow-400 w-screen h-screen h-32 ">
+      <div className="z-10  bg-yellow-400 w-full h-screen h-32 ">
         <div
           ref={node}
           className="w-full flex justify-center transform rotate-6"

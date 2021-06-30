@@ -3,7 +3,7 @@ import ZoomSection, { ZoomSectionProps } from "./ZoomSection";
 import { Meta, Story } from "@storybook/react";
 
 export default {
-  title: "Section/Section",
+  title: "Section/Zoom",
   component: ZoomSection,
 } as Meta;
 

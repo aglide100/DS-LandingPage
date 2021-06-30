@@ -3,8 +3,8 @@ export Directory=/home/ubuntu/DS-LandingPage/ui
 #!/bin/bash
 
 echo "====> install npm package"
-cs $Directory
-npm install --legacy-peer-deps
+cd $Directory
+npm install
 
 echo "====> build npm package"
 cd $Directory

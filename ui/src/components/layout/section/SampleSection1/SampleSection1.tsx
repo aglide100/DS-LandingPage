@@ -1,5 +1,5 @@
 import React from "react";
-import Cat from "../Cat/Cat";
+import Cat from "../../Cat/Cat";
 import Fade from "react-reveal/Fade";
 const SampleSection1: React.FC = () => {
   return (
@@ -24,9 +24,9 @@ const SampleSection1: React.FC = () => {
             ac nisl sagittis fermentum nec vitae turpis.
           </span>
         </Fade>
-        <Fade right triggerOnce={false} delay={500}>
+        {/* <Fade right triggerOnce={false} delay={500}>
           <Cat isFirst={false} isSecond={false} isThird={true}></Cat>
-        </Fade>
+        </Fade> */}
       </div>
       <div></div>
     </div>
