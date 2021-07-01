@@ -121,7 +121,9 @@ export function Header(props: HeaderProps) {
               <div>햄버거 클릭시 보여줄 내용!!</div>
             </div>
           </Fade>
-        ) : null}
+        ) : (
+          <></>
+        )}
       </TransitionGroup>
     </div>
   );
