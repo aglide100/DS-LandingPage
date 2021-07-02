@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
-import React, { ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
 import ReactPlayer from "react-player";
+import classNames from "classnames";
+import Image from "next/image";
 
 export type CardViewProps = {
   videoID: string;
@@ -15,46 +17,67 @@ const CardView: React.FC<CardViewProps> = ({
   isOpen,
   onSelect,
 }) => {
+  const imageWidth = isOpen ? 800 : 144;
+  const imageHeight = isOpen ? 144 : 600;
   return (
-    <div
-      className="w-full border rounded-xl border-solid flex flex-col"
-      style={{
-        backgroundImage:
-          "https://img.youtube.com/vi/" + videoID + "/sddefault.jpg",
-      }}
-      onClick={(ev) => {
-        ev.preventDefault();
-        onSelect(videoID);
-      }}
+    <motion.li
+      layout
+      initial={{ borderRadius: 10 }}
+      className={classNames("border border-solid flex-initial ", {
+        "order-last": isOpen,
+      })}
     >
-      <div>
-        <img src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"} />
-        <div>썸네일</div>
-        <div>
-          {isOpen ? <Content videoID={videoID} isYoutube={isYoutube} /> : "..."}
+      <motion.div>
+        <div className="flex flex-col items-center">
+          <Image
+            className={classNames(
+              "object-cover hover:opacity-50 transition duration-150",
+              {
+                "w-full h-36": isOpen,
+              }
+            )}
+            src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
+            alt={videoID}
+            width={imageWidth}
+            height={imageHeight}
+            onClick={(ev) => {
+              onSelect(videoID);
+            }}
+          />
+          <motion.div layout>
+            <Content videoID={videoID} isYoutube={isYoutube} isOpen={isOpen} />
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.li>
   );
 };
 
 type ContentProps = {
   videoID: string;
   isYoutube: boolean;
+  isOpen: boolean;
 };
 
-const Content: React.FC<ContentProps> = ({ videoID }) => {
+const Content: React.FC<ContentProps> = ({ videoID, isOpen }) => {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      {videoID}
-      <div className="w-full">
-        <ReactPlayer url={"https://youtube.com/watch?v=" + videoID} playing />
-      </div>
+    <motion.div layout>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ReactPlayer
+              url={"https://youtube.com/watch?v=" + videoID}
+              playing={isOpen}
+              controls
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

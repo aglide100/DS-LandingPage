@@ -18,6 +18,18 @@ const cardViewProps2: CardContainerItemProps = {
   isYoutube: true,
   videoID: "jvbgDfCUGE0",
 };
+const cardViewProps3: CardContainerItemProps = {
+  isYoutube: true,
+  videoID: "wnhvanMdx4s",
+};
+const cardViewProps4: CardContainerItemProps = {
+  isYoutube: true,
+  videoID: "wijVtkmjP-o",
+};
+const cardViewProps5: CardContainerItemProps = {
+  isYoutube: true,
+  videoID: "HMnatoiMdjA",
+};
 
 const Template: Story<CardContainerProps> = (args) => (
   <CardContainer {...args} />
@@ -25,5 +37,11 @@ const Template: Story<CardContainerProps> = (args) => (
 
 export const CardContainerFirst = Template.bind({});
 CardContainerFirst.args = {
-  cardViewList: [cardViewProps1, cardViewProps2],
+  cardViewList: [
+    cardViewProps1,
+    cardViewProps2,
+    cardViewProps3,
+    cardViewProps4,
+    cardViewProps5,
+  ],
 };
