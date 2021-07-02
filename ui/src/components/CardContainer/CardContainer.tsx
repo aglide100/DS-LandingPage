@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from "react";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import React, { useState } from "react";
 import CardView, { CardViewProps } from "./CardView";
 
 export type CardContainerProps = {
@@ -16,7 +17,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
 
     const list = cardViewListItem.map((cardView) => {
       if (cardView.videoID == selectedVideoID) {
-        cardView.isOpen = true;
+        cardView.isOpen = !cardView.isOpen;
       } else {
         cardView.isOpen = false;
       }
@@ -40,21 +41,26 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
 
   const cardViewListItems = cardViewListItem.map((cardView) => {
     return (
-      <li key={cardView.videoID}>
-        <CardView
-          videoID={cardView.videoID}
-          isYoutube={cardView.isYoutube}
-          isOpen={cardView.isOpen}
-          onSelect={onSelect}
-        />
-      </li>
+      <CardView
+        key={cardView.videoID}
+        videoID={cardView.videoID}
+        isYoutube={cardView.isYoutube}
+        isOpen={cardView.isOpen}
+        onSelect={onSelect}
+      />
     );
   });
 
   return (
-    <div className="w-full border rounded-xl border-solid flex flex-col">
-      <ul className="flex flex-row">{cardViewListItems}</ul>
-    </div>
+    <AnimateSharedLayout>
+      <motion.ul
+        layout
+        initial={{ borderRadius: 25 }}
+        className="flex flex-row flex-wrap justify-around"
+      >
+        {cardViewListItems}
+      </motion.ul>
+    </AnimateSharedLayout>
   );
 };
 
