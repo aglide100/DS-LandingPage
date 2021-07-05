@@ -8,6 +8,7 @@ export type CardViewProps = {
   videoID: string;
   isYoutube: boolean;
   isOpen: boolean;
+  order: number;
   onSelect: (videoID: string) => void;
 };
 
@@ -15,36 +16,38 @@ const CardView: React.FC<CardViewProps> = ({
   videoID,
   isYoutube,
   isOpen,
+  order,
   onSelect,
 }) => {
-  const imageWidth = isOpen ? 800 : 144;
-  const imageHeight = isOpen ? 144 : 600;
   return (
     <motion.li
       layout
       initial={{ borderRadius: 10 }}
-      className={classNames("border border-solid flex-initial ", {
-        "order-last": isOpen,
+      className={classNames("border border-solid flex-initial order-" + order, {
+        "flex-grow": isOpen,
+        "flex-none": !isOpen,
       })}
     >
       <motion.div>
         <div className="flex flex-col items-center">
-          <Image
-            className={classNames(
-              "object-cover hover:opacity-50 transition duration-150",
-              {
-                "w-full h-36": isOpen,
-              }
-            )}
-            src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
-            alt={videoID}
-            width={imageWidth}
-            height={imageHeight}
-            onClick={(ev) => {
-              onSelect(videoID);
-            }}
-          />
-          <motion.div layout>
+          <div
+            className={classNames("relative overflow-auto", {
+              "w-full h-36": isOpen,
+              "w-36 h-96": !isOpen,
+            })}
+          >
+            <Image
+              className={classNames("hover:opacity-50 transition duration-150")}
+              src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
+              alt={videoID}
+              layout="fill"
+              objectFit="fill"
+              onClick={(ev) => {
+                onSelect(videoID);
+              }}
+            />
+          </div>
+          <motion.div layout className="w-full">
             <Content videoID={videoID} isYoutube={isYoutube} isOpen={isOpen} />
           </motion.div>
         </div>
@@ -66,14 +69,17 @@ const Content: React.FC<ContentProps> = ({ videoID, isOpen }) => {
         {isOpen && (
           <motion.div
             layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={false}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            exit={{ direction: "-moz-initial" }}
           >
             <ReactPlayer
+              className="relative left-0 top-0 w-full"
               url={"https://youtube.com/watch?v=" + videoID}
               playing={isOpen}
               controls
+              css={{ width: "full", height: "full" }}
             />
           </motion.div>
         )}

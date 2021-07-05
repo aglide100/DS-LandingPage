@@ -1,12 +1,31 @@
 import React, { useState, useRef } from "react";
 import classNames from "classnames";
-import Fade from "react-reveal/Fade";
-import TransitionGroup from "react-transition-group/TransitionGroup";
+import { motion } from "framer-motion";
 
 export type HeaderProps = {
   isShow: boolean | undefined;
   scrollDirection: "up" | "down" | undefined;
   scrollY: number;
+};
+
+const variants = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 10px)`,
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    clipPath: "circle(30px at calc(100% - 40px) 10px)",
+    transition: {
+      delay: 0.3,
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+    },
+  },
 };
 
 export function Header(props: HeaderProps) {
@@ -16,7 +35,7 @@ export function Header(props: HeaderProps) {
     <div>
       <nav
         className={classNames(
-          "group w-screen fixed left-0 top-0 box-border transition duration-500 z-30 transform",
+          "group w-screen fixed left-0 top-0 box-border transition duration-500 z-50 transform",
           {
             "bg-gray-500 h-20 translate-y-0": isIconClick,
             "h-20 bg-white": props.scrollY < 100 || !isIconClick,
@@ -49,7 +68,7 @@ export function Header(props: HeaderProps) {
 
           <a
             className={classNames(
-              "menu-trigger type12 transform translate-y-4 mr-2 sm:mr-6",
+              "menu-trigger type12 transform translate-y-4 mr-2 sm:mr-6 z-50",
               {
                 "active-12": isIconClick,
                 "": !isIconClick,
@@ -106,25 +125,28 @@ export function Header(props: HeaderProps) {
         </div>
       </nav>
 
-      <TransitionGroup>
-        {isIconClick ? (
-          <Fade collapse bottom duration={500}>
-            <div
-              className={classNames(
-                "fixed bg-green-100 mt-20 w-screen h-screen z-50",
-                {
-                  visible: isIconClick,
-                  invisible: !isIconClick,
-                }
-              )}
-            >
-              <div>햄버거 클릭시 보여줄 내용!!</div>
-            </div>
-          </Fade>
-        ) : (
-          <></>
-        )}
-      </TransitionGroup>
+      <motion.nav initial={false} animate={isIconClick ? "open" : "closed"}>
+        <motion.div
+          className={classNames(
+            "fixed bg-green-100  w-screen h-screen z-30 transition",
+            {}
+          )}
+          variants={variants}
+        >
+          {isIconClick && <div className="mt-20">Hello</div>}
+        </motion.div>
+
+        {/* <Fade collapse bottom duration={500}>
+          <div
+            className={classNames(
+              "bg-green-100 mt-20 w-screen h-screen z-50",
+              {}
+            )}
+          >
+            <div>햄버거 클릭시 보여줄 내용!!</div>
+          </div>
+        </Fade> */}
+      </motion.nav>
     </div>
   );
 }

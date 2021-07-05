@@ -13,27 +13,33 @@ export type CardContainerItemProps = {
 
 const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
   const onSelect = (selectedVideoID: string) => {
-    console.log(selectedVideoID + "클릭됨");
-
     const list = cardViewListItem.map((cardView) => {
       if (cardView.videoID == selectedVideoID) {
         cardView.isOpen = !cardView.isOpen;
+        cardView.order = cardViewListItem.length;
       } else {
         cardView.isOpen = false;
+        if (cardView.order != 0) {
+          cardView.order--;
+        }
       }
       return cardView;
     });
 
     setCardViewListItem(list);
   };
-  const initCardViewList: CardViewProps[] = cardViewList.map((cardView) => {
-    return {
-      isOpen: false,
-      onSelect: onSelect,
-      videoID: cardView.videoID,
-      isYoutube: cardView.isYoutube,
-    };
-  });
+
+  const initCardViewList: CardViewProps[] = cardViewList.map(
+    (cardView, index) => {
+      return {
+        isOpen: false,
+        onSelect: onSelect,
+        videoID: cardView.videoID,
+        isYoutube: cardView.isYoutube,
+        order: index,
+      };
+    }
+  );
 
   const [cardViewListItem, setCardViewListItem] = useState<CardViewProps[]>(
     initCardViewList
@@ -46,6 +52,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
         videoID={cardView.videoID}
         isYoutube={cardView.isYoutube}
         isOpen={cardView.isOpen}
+        order={cardView.order}
         onSelect={onSelect}
       />
     );
