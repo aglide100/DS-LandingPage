@@ -23,7 +23,17 @@ export const IntroSection: React.FC = () => {
   );
 
   if (result.scrollY < screen.height) {
-    videoRef.current?.play();
+    const playPromise = videoRef.current?.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then((_) => {
+          videoRef.current?.play();
+        })
+        .catch((error) => {
+          console.log("Can't play intro!!", error);
+        });
+    }
   } else {
     videoRef.current?.pause();
   }
@@ -34,8 +44,8 @@ export const IntroSection: React.FC = () => {
         <video
           autoPlay={true}
           muted
-          className="fixed top-0 w-full h-screen sm:h-auto md:h-auto opacity-95 overflow-hidden"
-          style={{ zIndex: -1, objectFit: "fill" }}
+          className="fixed top-0 w-full h-screen object-cover sm:h-auto md:h-screen opacity-95 overflow-hidden"
+          style={{ zIndex: -1 }}
           ref={videoRef}
         >
           <source

@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const result = useGetScroll(useScrollHooksProps);
 
   return (
-    <div className="flex flex-col justify-between h-screen ">
+    <div className="flex flex-col justify-between h-screen">
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div ref={headerNode}>
           <Header {...result}></Header>
         </div>
-        <div className="w-screen flex justify-center mt-24">
+        <div className="w-screen flex justify-center mt-24 overflow-x-hidden">
           <Component {...pageProps} />
         </div>
       </div>
