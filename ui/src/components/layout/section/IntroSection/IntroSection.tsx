@@ -1,28 +1,22 @@
-import React, { useRef, useState, useEffect } from "react";
-import Tada from "react-reveal/Tada";
+import React, { useRef, ReactNode } from "react";
+import { useIsShow, UseScrollHooksProps } from "../../../../Hooks";
 
-import { useGetScroll, UseScrollHooksProps } from "../../../../Hooks";
+export type IntroSectionProps = {
+  children: ReactNode;
+};
 
-export const IntroSection: React.FC = () => {
-  const node = useRef<HTMLDivElement>(null);
+export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [count, setCount] = useState<number>(0);
+  const introNode = useRef<HTMLDivElement>(null);
 
   const useScrollHooksProps: UseScrollHooksProps = {
-    receivedRef: node,
+    receivedRef: introNode,
   };
 
-  const result = useGetScroll(useScrollHooksProps);
+  const isShow = useIsShow(useScrollHooksProps);
 
-  useInterval(
-    () => {
-      setCount(count + 1);
-    },
-    result.isShow ? 2000 : null
-  );
-
-  if (result.scrollY < screen.height) {
+  if (isShow) {
     const playPromise = videoRef.current?.play();
 
     if (playPromise !== undefined) {
@@ -40,7 +34,7 @@ export const IntroSection: React.FC = () => {
 
   return (
     <div className="w-full z-20">
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen" ref={introNode}>
         <video
           autoPlay={true}
           muted
@@ -56,38 +50,10 @@ export const IntroSection: React.FC = () => {
       </div>
 
       <div className="z-10  bg-yellow-400 w-full h-screen h-32 ">
-        <div
-          ref={node}
-          className="w-full flex justify-center transform rotate-6"
-        >
-          <Tada spy={count} delay={300} css={{ top: "100px" }}>
-            <span className="text-3xl mt-10">뭔가 있어보이는 제목</span>
-          </Tada>
-        </div>
+        {children}
       </div>
     </div>
   );
 };
 
-function useInterval(callback, delay) {
-  const savedCallBack = useRef<any>();
-
-  useEffect(() => {
-    savedCallBack.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    function tick() {
-      if (savedCallBack.current == undefined) {
-        return;
-      } else {
-        savedCallBack.current();
-      }
-    }
-    if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
 export default IntroSection;

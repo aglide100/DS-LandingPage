@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import Icon from "../Icon/Icon";
 
 export type HeaderProps = {
   isShow: boolean | undefined;
@@ -28,25 +29,25 @@ const variants = {
   },
 };
 
-export function Header(props: HeaderProps) {
+const Header: React.FC<HeaderProps> = ({
+  isShow,
+  scrollDirection,
+  scrollY,
+}) => {
   const [isIconClick, setIconClick] = useState<boolean>(false);
 
   return (
     <div>
       <nav
         className={classNames(
-          "group w-screen fixed left-0 top-0 box-border transition duration-500 z-50 transform",
+          "group w-screen fixed left-0 top-0 transition duration-500 z-40 transform shadow",
           {
-            "bg-gray-500 h-20 translate-y-0": isIconClick,
-            "h-20 bg-white": props.scrollY < 100 || !isIconClick,
-            "h-20 bg-gray-300 bg-opacity-50 -translate-y-4 hover:translate-y-0 hover:bg-gray-500 hover:bg-opacity-100":
-              props.scrollY > 100 &&
-              props.scrollDirection == "up" &&
-              !isIconClick,
-            "bg-gray-500 h-20 translate-y-0 box-border":
-              props.scrollY > 100 &&
-              props.scrollDirection == "down" &&
-              !isIconClick,
+            "h-20 translate-y-0": isIconClick,
+            "h-20 bg-white": scrollY < 100 || !isIconClick,
+            "h-20 bg-gray-300 bg-opacity-50 -translate-y-4 hover:translate-y-0 hover:bg-white hover:bg-opacity-100":
+              scrollY > 100 && scrollDirection == "up" && !isIconClick,
+            "bg-white h-20 translate-y-0 box-border":
+              scrollY > 100 && scrollDirection == "down" && !isIconClick,
           }
         )}
       >
@@ -55,16 +56,15 @@ export function Header(props: HeaderProps) {
             "cursor-pointer w-full flex justify-between items-center mt-1 mb-3 transition duration-500 transform items-center",
             {
               "text-black translate-y-0 box-border":
-                isIconClick ||
-                (props.scrollY < 100 && props.scrollDirection == "down"),
+                isIconClick || (scrollY < 100 && scrollDirection == "down"),
               "text-gray-300 group-hover:text-black hover:translate-y-0":
-                props.scrollY > 100 &&
-                props.scrollDirection == "up" &&
-                !isIconClick,
+                scrollY > 100 && scrollDirection == "up" && !isIconClick,
             }
           )}
         >
-          <div>Logo</div>
+          <div className="w-52">
+            <Icon which="Logo" />
+          </div>
 
           <a
             className={classNames(
@@ -80,73 +80,41 @@ export function Header(props: HeaderProps) {
             }}
           >
             <span
-              className={classNames("", {
-                "bg-white e": isIconClick,
-                "bg-gray-500": props.scrollY < 100 && !isIconClick,
-                "bg-opacity-0 group-hover:bg-opacity-100 bg-gray-500 group-hover:bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "up" &&
-                  !isIconClick,
-                "bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "down" &&
-                  !isIconClick,
+              className={classNames("bg-black", {
+                "bg-white": isIconClick,
+                // "bg-white e": isIconClick,
+                // "bg-gray-500": scrollY < 100 && !isIconClick,
+                // "bg-opacity-0 group-hover:bg-opacity-100 bg-gray-500 group-hover:bg-black":
+                //   scrollY > 100 && scrollDirection == "up" && !isIconClick,
+                // "bg-white":
+                //   scrollY > 100 && scrollDirection == "down" && !isIconClick,
               })}
             ></span>
             <span
-              className={classNames("", {
-                "bg-white e": isIconClick,
-                "bg-gray-500": props.scrollY < 100 && !isIconClick,
-                "bg-opacity-0 group-hover:bg-opacity-100 bg-gray-500 group-hover:bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "up" &&
-                  !isIconClick,
-                "bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "down" &&
-                  !isIconClick,
-              })}
+              className={classNames("bg-black", { "bg-white": isIconClick })}
             ></span>
             <span
-              className={classNames("", {
-                "bg-white e": isIconClick,
-                "bg-gray-500": props.scrollY < 100 && !isIconClick,
-                "bg-opacity-0 group-hover:bg-opacity-100 bg-gray-500 group-hover:bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "up" &&
-                  !isIconClick,
-                "bg-white":
-                  props.scrollY > 100 &&
-                  props.scrollDirection == "down" &&
-                  !isIconClick,
-              })}
+              className={classNames("bg-black", { "bg-white": isIconClick })}
             ></span>
           </a>
         </div>
       </nav>
-
       <motion.nav initial={false} animate={isIconClick ? "open" : "closed"}>
         <motion.div
           className={classNames(
-            "fixed bg-green-100  w-screen h-screen z-30 transition",
-            {}
+            "fixed bg-black w-screen h-screen z-30 top-0 transition z-30",
+            {
+              "bg-opacity-100": isIconClick,
+              "bg-opacity-0": scrollY > 100,
+            }
           )}
           variants={variants}
         >
           {isIconClick && <div className="mt-20">Hello</div>}
         </motion.div>
-
-        {/* <Fade collapse bottom duration={500}>
-          <div
-            className={classNames(
-              "bg-green-100 mt-20 w-screen h-screen z-50",
-              {}
-            )}
-          >
-            <div>햄버거 클릭시 보여줄 내용!!</div>
-          </div>
-        </Fade> */}
       </motion.nav>
     </div>
   );
-}
+};
+
+export default Header;
