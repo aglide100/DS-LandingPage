@@ -4,6 +4,7 @@ import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
 import Section1 from "../src/components/layout/section/BounceSection/BounceSection";
 import { cardViewContainerProps } from "../src/components/layout/CardContainer/CardContainerProps";
+import SectionFirst from "../src/components/layout/section/SectionFirst/SectionFirst";
 
 const IntroSection = dynamic(
   () =>
@@ -84,8 +85,9 @@ export default function Home() {
         <Section2 />
         <Section3 />
         <Section4 />
-        <Section5 cardViewList={cardViewContainerProps} />
-
+        <SectionFirst>
+          <Section5 cardViewList={cardViewContainerProps} />
+        </SectionFirst>
         <Section4 />
       </div>
     </div>
