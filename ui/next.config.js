@@ -16,17 +16,6 @@ const withVideos = require("next-videos");
 module.exports = withPlugins([
   [withVideos],
   {
-    webpack(config) {
-      config.module.rules.push({
-        test: /\.svg$/,
-        issuer: {
-          test: /\.(js|ts)x?$/,
-        },
-        use: ["@svgr/webpack"],
-      });
-
-      return config;
-    },
     typescript: {
       // !! WARN !!
       // Dangerously allow production builds to successfully complete even if
