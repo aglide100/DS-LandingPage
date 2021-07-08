@@ -8,7 +8,7 @@ const SampleSection1: React.FC = () => {
       <div className="w-auto">
         <Fade bottom triggerOnce={false} delay={200}>
           <div className="float-left p-8 w-80 ">
-            <Image className="rounded-full overflow-hidden	" src="/cat1.jpeg" alt="cat1" width="250px" height="250px" />
+            <Image className="rounded-full" src="/cat1.jpeg" alt="cat1" width="250px" height="250px"/>
             <p className="text-center text-xl	font-bold">귀여운 고양이1</p>
             <p className="text-center">귀여운 고양이에 대한 설명 ㅁㄴㅇㄻㄴㅇㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ</p>
           </div>
