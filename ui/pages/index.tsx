@@ -69,7 +69,18 @@ const InterViewSection = dynamic(
     loading: () => <LoadingComponent />,
     ssr: true,
   }
+); 
+
+const Section99 = dynamic(
+  () =>
+    import(
+      "../src/components/layout/section/SampleSection99/SampleSection99"
+    ).catch((err) => {
+      return () => <LoadingError>{err}</LoadingError>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: true }
 );
+
 
 export default function Home() {
   return (
@@ -88,6 +99,7 @@ export default function Home() {
           <InterViewSection />
         </SectionFirst>
         <Section4 />
+        <Section99 />
       </div>
     </div>
   );
