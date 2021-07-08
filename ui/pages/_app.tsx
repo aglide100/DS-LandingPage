@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import Header from "../src/components/Header/Header";
-import { Footer } from "../src/components/Footer/Footer";
+import Header from "../src/components/layout/Header/Header";
+import { Footer } from "../src/components/layout/Footer/Footer";
 import type { AppProps } from "next/app";
 import "../src/_css/common.css";
 import "../styles/globals.css";

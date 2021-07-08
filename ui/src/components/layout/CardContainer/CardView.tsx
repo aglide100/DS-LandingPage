@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
+import React, { useRef } from "react";
 import ReactPlayer from "react-player";
 import classNames from "classnames";
 import Image from "next/image";
@@ -53,6 +53,8 @@ const CardView: React.FC<CardViewProps> = ({
   order,
   onSelect,
 }) => {
+  const focusTarget = useRef<any>(null);
+
   return (
     <motion.li
       layout
@@ -60,7 +62,7 @@ const CardView: React.FC<CardViewProps> = ({
       className={classNames(
         "border border-solid flex-initial h-96 order-" + order,
         {
-          "flex-grow mr-0": isOpen,
+          "mr-0": isOpen,
           "flex-none": !isOpen,
         }
       )}
@@ -81,6 +83,9 @@ const CardView: React.FC<CardViewProps> = ({
               layout="fill"
               objectFit="cover"
               onClick={(ev) => {
+                ev.preventDefault();
+                console.log(focusTarget);
+                // focusTarget.current.scrollIntoView({ behavior: "smooth" });
                 onSelect(videoID);
               }}
             />
@@ -101,6 +106,7 @@ const CardView: React.FC<CardViewProps> = ({
                 className="relative left-0 top-0 w-full"
                 url={"https://youtube.com/watch?v=" + videoID}
                 playing={isOpen}
+                ref={focusTarget}
                 controls
                 css={{ maxWidth: "900px" }}
               />

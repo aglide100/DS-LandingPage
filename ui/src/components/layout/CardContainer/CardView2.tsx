@@ -12,6 +12,22 @@ export type CardView2Props = {
   onSelect: (videoID: string) => void;
 };
 
+const contentVariants = {
+  show: {
+    opacity: 1,
+    transition: {
+      delay: 0.5,
+      duration: 0.5,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 const CardView2: React.FC<CardView2Props> = ({
   videoID,
   isYoutube,
@@ -30,7 +46,7 @@ const CardView2: React.FC<CardView2Props> = ({
     >
       <motion.div>
         <div className="flex flex-col items-center">
-          <div
+          <motion.div
             className={classNames("relative overflow-auto", {
               "w-full h-36": isOpen,
               "w-36 h-96": !isOpen,
@@ -46,49 +62,38 @@ const CardView2: React.FC<CardView2Props> = ({
                 onSelect(videoID);
               }}
             />
-          </div>
-          <motion.div layout className="w-full">
-            <Content videoID={videoID} isYoutube={isYoutube} isOpen={isOpen} />
           </motion.div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="flex flex-col items-center w-screen h-screen top-0 left-0 fixed bg-black bg-opacity-50 z-50"
+                layout
+                variants={contentVariants}
+                initial="hidden"
+                animate="show"
+                exit="hidden"
+              >
+                <div
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelect(videoID);
+                  }}
+                  className="bg-green-100 text-2xl mt-52"
+                >
+                  창닫기
+                </div>
+                <ReactPlayer
+                  className="top-28 w-10/12 h-10/12"
+                  url={"https://youtube.com/watch?v=" + videoID}
+                  playing={isOpen}
+                  controls
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
     </motion.li>
-  );
-};
-
-type ContentProps = {
-  videoID: string;
-  isYoutube: boolean;
-  isOpen: boolean;
-};
-
-const Content: React.FC<ContentProps> = ({ videoID, isOpen }) => {
-  return (
-    <motion.div layout>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="w-screen h-screen top-0 left-0 fixed bg-black bg-opacity-50"
-            layout
-            initial={false}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5 }}
-            exit={{ direction: "-moz-initial" }}
-          >
-            <ReactPlayer
-              className="fixed left-0 right-0 m-auto w-full"
-              url={"https://youtube.com/watch?v=" + videoID}
-              playing={isOpen}
-              controls
-              css={{
-                width: "100vw",
-                height: "100vw",
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
   );
 };
 

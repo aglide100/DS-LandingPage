@@ -3,7 +3,6 @@ import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
 import Section1 from "../src/components/layout/section/BounceSection/BounceSection";
-import { cardViewContainerProps } from "../src/components/layout/CardContainer/CardContainerProps";
 import SectionFirst from "../src/components/layout/section/SectionFirst/SectionFirst";
 
 const IntroSection = dynamic(
@@ -61,24 +60,11 @@ const Section4 = dynamic(
 
 const InterViewSection = dynamic(
   () =>
-    import("../src/components/layout/CardContainer/CardContainer").catch(
-      (err) => {
-        return () => <LoadingError>{err}</LoadingError>;
-      }
-    ),
-  {
-    loading: () => <LoadingComponent />,
-    ssr: true,
-  }
-);
-
-const InterViewSection2 = dynamic(
-  () =>
-    import("../src/components/layout/CardContainer/CardContainer2").catch(
-      (err) => {
-        return () => <LoadingError>{err}</LoadingError>;
-      }
-    ),
+    import(
+      "../src/components/layout/section/InterViewSection/InterViewSection"
+    ).catch((err) => {
+      return () => <LoadingError>{err}</LoadingError>;
+    }),
   {
     loading: () => <LoadingComponent />,
     ssr: true,
@@ -99,9 +85,7 @@ export default function Home() {
         <Section3 />
         <Section4 />
         <SectionFirst>
-          <InterViewSection cardViewList={cardViewContainerProps} />
-          <div className="mb-96"></div>
-          <InterViewSection2 cardViewList={cardViewContainerProps} />
+          <InterViewSection />
         </SectionFirst>
         <Section4 />
       </div>

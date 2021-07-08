@@ -12,6 +12,8 @@ export type CardContainerItemProps = {
 };
 
 const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const onSelect = (selectedVideoID: string) => {
     const list = cardViewListItem.map((cardView) => {
       if (cardView.videoID == selectedVideoID) {
@@ -26,6 +28,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
       return cardView;
     });
 
+    setIsOpen(!isOpen);
     setCardViewListItem(list);
   };
 
@@ -59,15 +62,13 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
   });
 
   return (
-    <AnimateSharedLayout>
-      <motion.ul
-        layout
-        initial={{ borderRadius: 25 }}
-        className="flex flex-row flex-wrap justify-around"
-      >
-        {cardViewListItems}
-      </motion.ul>
-    </AnimateSharedLayout>
+    <motion.ul
+      layout
+      initial={{ borderRadius: 25 }}
+      className="flex flex-row flex-wrap justify-around"
+    >
+      {cardViewListItems}
+    </motion.ul>
   );
 };
 

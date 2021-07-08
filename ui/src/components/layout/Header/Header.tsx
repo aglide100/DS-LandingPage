@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import Fade from "react-reveal/Fade";
-import ReactTextTransition, { presets } from "react-text-transition";
 
 export type HeaderProps = {
   isShow: boolean | undefined;
@@ -119,7 +118,6 @@ const Header: React.FC<HeaderProps> = ({
           {isIconClick && (
             <div className="mt-20 text-white">
               <div className="ml-32 flex flex-col">
-                <ReactTextTransition text="Hello" />
                 <Fade duration={1000} delay={1000} bottom>
                   <span className="text-7xl mt-36 mb-28 transition delay-150 hover:underline">
                     Hello
