@@ -87,6 +87,6 @@ css/및 사용된 라이브러리
 [devserverlink]: http://146.56.166.229
 [react-text-transitionlink]: https://github.com/WinterCore/react-text-transition
 [react-animate-textlink]: https://github.com/prztrz/react-animate-text
-[dockerhublink]: https://hub.docker.com/repository/docker/aglide100/ds-landing-page
+[dockerhublink]: https://hub.docker.com/r/aglide100/ds-landing-page
 [react-playerlink]: https://github.com/CookPete/react-player
 [framerlink]: https://www.framer.com/
