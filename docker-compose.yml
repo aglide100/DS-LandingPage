@@ -23,8 +23,7 @@ services:
   #     - node
   node:
     container_name: node
-    build:
-      context: ./ui
+    image: aglide100/ds-landing-page:latest
     hostname: node
     networks:
       - docker_network
