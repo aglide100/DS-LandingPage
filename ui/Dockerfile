@@ -6,7 +6,7 @@ COPY package*.json ./
 
 COPY . . 
 
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --unsafe-perm
 # RUN npm install --no-optional
 
 RUN npm run build
