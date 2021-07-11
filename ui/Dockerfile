@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y nodejs
 
-RUN apt-get install npm
+RUN apt-get install -y npm
 
 #FROM node:16.4-buster-slim
 
