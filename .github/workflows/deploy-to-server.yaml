@@ -15,7 +15,7 @@ jobs:
         id: prepare
         run: |
           DOCKER_IMAGE=aglide100/ds-landing-page
-          DOCKER_PLATFORMS=linux/amd64,linux/arm64/v8
+          DOCKER_PLATFORMS=linux/amd64
           VERSION=edge
 
           if [[ $GITHUB_REF == refs/tags/* ]]; then
