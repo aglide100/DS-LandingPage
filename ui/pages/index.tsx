@@ -2,8 +2,8 @@ import React from "react";
 import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
-import Section1 from "../src/components/old/BounceSection/BounceSection";
-import SectionInterViewWrapper from "../src/components/layout/section/SectionInterViewWrapper/SectionInterverWrapper";
+import SectionInterViewWrapper from "../src/components/layout/section/SectionInterViewWrapper/SectionInterviewWrapper";
+import InterViewSection from "../src/components/layout/section/InterViewSection/InterViewSection";
 
 const IntroSection = dynamic(
   () =>
@@ -25,17 +25,14 @@ const IntroChildren = dynamic(
   { loading: () => <LoadingComponent />, ssr: true }
 );
 
-const InterViewSection = dynamic(
+const InterViewSections = dynamic(
   () =>
     import(
       "../src/components/layout/section/InterViewSection/InterViewSection"
     ).catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),
-  {
-    loading: () => <LoadingComponent />,
-    ssr: false,
-  }
+  { loading: () => <LoadingComponent />, ssr: false }
 );
 
 export default function Home() {
@@ -47,9 +44,8 @@ export default function Home() {
         </IntroSection>
       </div>
       <div className="bg-white z-20">
-        <Section1 />
         <SectionInterViewWrapper>
-          <InterViewSection />
+          <InterViewSections />
         </SectionInterViewWrapper>
       </div>
     </div>

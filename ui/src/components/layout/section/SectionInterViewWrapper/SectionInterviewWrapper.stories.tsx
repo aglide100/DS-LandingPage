@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 import SectionInterViewWrapper, {
   SectionInterViewWrapperProps,
-} from "./SectionInterverWrapper";
+} from "./SectionInterviewWrapper";
 
 export default {
   title: "Section/First",
