@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install nodejs
+RUN apt-get update && apt-get install -y nodejs
 
 RUN apt-get install npm
 
