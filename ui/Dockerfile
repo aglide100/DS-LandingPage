@@ -7,7 +7,15 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-COPY . . 
+COPY . .
+
+RUN tar -xf vips-8.11.2.tar.gz && cd vips-8.11.2
+
+RUN ./configuration
+
+RUN make && make install
+
+RUN cd .. 
 
 RUN npm install --legacy-peer-deps 
 # RUN npm install --no-optional
