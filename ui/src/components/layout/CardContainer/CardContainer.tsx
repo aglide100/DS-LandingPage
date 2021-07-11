@@ -1,6 +1,7 @@
-import { motion, AnimateSharedLayout } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import CardView, { CardViewProps } from "./CardView";
+import classNames from "classnames";
 
 export type CardContainerProps = {
   cardViewList: CardContainerItemProps[];
@@ -65,7 +66,9 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
     <motion.ul
       layout
       initial={{ borderRadius: 25 }}
-      className="flex flex-row flex-wrap justify-around"
+      className={classNames("flex flex-row flex-wrap justify-around", {
+        "w-screen left-40": isOpen,
+      })}
     >
       {cardViewListItems}
     </motion.ul>

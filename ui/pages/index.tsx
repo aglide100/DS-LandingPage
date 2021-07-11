@@ -2,8 +2,8 @@ import React from "react";
 import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
-import Section1 from "../src/components/layout/section/BounceSection/BounceSection";
-import SectionFirst from "../src/components/layout/section/SectionFirst/SectionFirst";
+import Section1 from "../src/components/old/BounceSection/BounceSection";
+import SectionInterViewWrapper from "../src/components/layout/section/SectionInterViewWrapper/SectionInterverWrapper";
 
 const IntroSection = dynamic(
   () =>
@@ -25,39 +25,6 @@ const IntroChildren = dynamic(
   { loading: () => <LoadingComponent />, ssr: true }
 );
 
-const Section2 = dynamic(
-  () =>
-    import("../src/components/layout/section/ZoomSection/ZoomSection").catch(
-      (err) => {
-        return () => <LoadingError>{err}</LoadingError>;
-      }
-    ),
-  { loading: () => <LoadingComponent />, ssr: true }
-);
-
-const Section3 = dynamic(
-  () =>
-    import(
-      "../src/components/layout/section/SampleSection1/SampleSection1"
-    ).catch((err) => {
-      return () => <LoadingError>{err}</LoadingError>;
-    }),
-  { loading: () => <LoadingComponent />, ssr: true }
-);
-
-const Section4 = dynamic(
-  () =>
-    import(
-      "../src/components/layout/section/SampleSection2/SampleSection2"
-    ).catch((err) => {
-      return () => <LoadingError>{err}</LoadingError>;
-    }),
-  {
-    loading: () => <LoadingComponent />,
-    ssr: true,
-  }
-);
-
 const InterViewSection = dynamic(
   () =>
     import(
@@ -67,7 +34,7 @@ const InterViewSection = dynamic(
     }),
   {
     loading: () => <LoadingComponent />,
-    ssr: true,
+    ssr: false,
   }
 ); 
 
@@ -92,14 +59,13 @@ export default function Home() {
       </div>
       <div className="bg-white z-20">
         <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <SectionFirst>
+        <SectionInterViewWrapper>
           <InterViewSection />
+
         </SectionFirst>
         <Section4 />
         <Section99 />
+        </SectionInterViewWrapper>
       </div>
     </div>
   );
