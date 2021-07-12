@@ -3,7 +3,6 @@ import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
 import SectionInterViewWrapper from "../src/components/layout/section/SectionInterViewWrapper/SectionInterviewWrapper";
-import InterViewSection from "../src/components/layout/section/InterViewSection/InterViewSection";
 
 const IntroSection = dynamic(
   () =>
@@ -35,6 +34,16 @@ const InterViewSections = dynamic(
   { loading: () => <LoadingComponent />, ssr: false }
 );
 
+const IntroduceDepartment = dynamic(
+  () =>
+    import(
+      "../src/components/layout/section/IntroduceDepartment/IntroduceDepartment"
+    ).catch((err) => {
+      return () => <LoadingError>{err}</LoadingError>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
 export default function Home() {
   return (
     <div className="w-full flex flex-col content-around">
@@ -46,6 +55,7 @@ export default function Home() {
       <div className="bg-white z-20">
         <SectionInterViewWrapper>
           <InterViewSections />
+          <IntroduceDepartment />
         </SectionInterViewWrapper>
       </div>
     </div>

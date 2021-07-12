@@ -33,13 +33,13 @@ const InterViewSection: React.FC<{}> = () => {
       <div className="pb-40" />
       <div className="flex flex-col justify-items-start">
         <motion.div
-          className="w-24 h-24"
+          className="w-16 h-16"
           initial={{ rotate: 45 }}
           whileHover={{ rotate: 315 }}
           transition={{ duration: 1 }}
           style={{ background: "#d1112c" }}
         />
-        <div className="mt-36 text-6xl text-white mb-20">
+        <div className="mt-10 text-6xl text-white mb-20">
           미래를 창조하는 소프트웨어 융합
         </div>
       </div>

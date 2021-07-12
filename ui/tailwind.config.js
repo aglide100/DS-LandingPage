@@ -11,6 +11,16 @@ module.exports = {
       height: {
         "110vh": "110vh",
       },
+      color: {
+        ds_gray: {
+          1: "#545454",
+        },
+      },
+      gradientColorStops: {
+        ds_gray: {
+          1: "#545454",
+        },
+      },
     },
   },
   variants: {
