@@ -2,8 +2,8 @@ import React from "react";
 import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
-import SectionInterViewWrapper from "../src/components/layout/section/SectionInterViewWrapper/SectionInterviewWrapper";
-
+import InterViewSectionWrapper from "../src/components/layout/section/InterViewSectionWrapper/InterviewSectionWrapper";
+import TrophySectionWrapper from "../src/components/layout/section/TrophySectionWrapper/TrophySectionWrapper";
 const IntroSection = dynamic(
   () =>
     import("../src/components/layout/section/IntroSection/IntroSection").catch(
@@ -53,10 +53,13 @@ export default function Home() {
         </IntroSection>
       </div>
       <div className="bg-white z-20">
-        <SectionInterViewWrapper>
+        <InterViewSectionWrapper>
           <InterViewSections />
           <IntroduceDepartment />
-        </SectionInterViewWrapper>
+        </InterViewSectionWrapper>
+        <TrophySectionWrapper>
+          <span>주요성과</span>
+        </TrophySectionWrapper>
       </div>
     </div>
   );

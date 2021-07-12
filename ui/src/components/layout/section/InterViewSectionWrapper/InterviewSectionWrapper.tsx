@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
 
-export type SectionInterViewWrapperProps = {
+export type InterViewSectionWrapperProps = {
   children: ReactNode;
 };
 
-const SectionInterViewWrapper: React.FC<SectionInterViewWrapperProps> = (
+const InterViewSectionWrapper: React.FC<InterViewSectionWrapperProps> = (
   props
 ) => {
   return (
@@ -20,4 +20,4 @@ const SectionInterViewWrapper: React.FC<SectionInterViewWrapperProps> = (
   );
 };
 
-export default SectionInterViewWrapper;
+export default InterViewSectionWrapper;
