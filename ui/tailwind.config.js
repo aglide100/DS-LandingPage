@@ -21,10 +21,15 @@ module.exports = {
           1: "#545454",
         },
       },
+      fontSize: {
+        bg: "12vw",
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      textColor: ["active"],
+    },
   },
   important: true,
   plugins: [],

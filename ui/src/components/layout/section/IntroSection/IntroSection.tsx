@@ -1,4 +1,4 @@
-import React, { useRef, ReactNode } from "react";
+import React, { useRef, ReactNode, useState } from "react";
 import { useIsShow, UseScrollHooksProps } from "../../../../Hooks";
 
 export type IntroSectionProps = {
@@ -6,6 +6,8 @@ export type IntroSectionProps = {
 };
 
 export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
+  const [isVideoPlay, setIsVideoPlay] = useState<boolean>(false);
+
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const introNode = useRef<HTMLDivElement>(null);
@@ -16,19 +18,21 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
 
   const isShow = useIsShow(useScrollHooksProps);
 
-  if (isShow) {
+  if (isShow.isShow == true || undefined) {
     const playPromise = videoRef.current?.play();
 
     if (playPromise !== undefined) {
       playPromise
         .then((_) => {
           videoRef.current?.play();
+          setIsVideoPlay(false);
         })
         .catch((error) => {
           console.log("Can't play intro!!", error);
         });
     }
-  } else {
+  } else if (isShow.isShow == false && !isVideoPlay) {
+    setIsVideoPlay(true);
     videoRef.current?.pause();
   }
 

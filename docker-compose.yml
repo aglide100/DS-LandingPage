@@ -1,4 +1,4 @@
-version: "3.5"
+version: "2"
 x-services-volume: &services-volume
   type: bind
 

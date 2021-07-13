@@ -12,7 +12,7 @@ export type HeaderProps = {
 
 const variants = {
   open: (height = 1500) => ({
-    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 10px)`,
+    clipPath: `circle(${height * 2 + 200}px at calc(100% - 0px) 10px)`,
     transition: {
       type: "spring",
       stiffness: 20,
@@ -20,7 +20,7 @@ const variants = {
     },
   }),
   closed: {
-    clipPath: "circle(30px at calc(100% - 40px) 10px)",
+    clipPath: "circle(30px at calc(100% - 0px) 10px)",
     transition: {
       delay: 0.3,
       type: "spring",
