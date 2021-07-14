@@ -66,9 +66,12 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
     <motion.ul
       layout
       initial={{ borderRadius: 25 }}
-      className={classNames("flex flex-row flex-wrap justify-around", {
-        "w-screen left-40": isOpen,
-      })}
+      className={classNames(
+        "flex flex-row flex-nowrap justify-around px-48 hover:px-0",
+        {
+          "w-screen left-40": isOpen,
+        }
+      )}
     >
       {cardViewListItems}
     </motion.ul>

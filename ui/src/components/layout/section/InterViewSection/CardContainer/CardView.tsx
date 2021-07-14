@@ -60,7 +60,7 @@ const CardView: React.FC<CardViewProps> = ({
       className={classNames(
         "border border-solid flex-initial h-96 order-" + order,
         {
-          "mr-0": isOpen,
+          "mr-0 flex-nowrap": isOpen,
           "flex-none": !isOpen,
         }
       )}
@@ -72,10 +72,11 @@ const CardView: React.FC<CardViewProps> = ({
           variants={cardVariants}
           initial={false}
           animate={isOpen ? "expanded" : "collapsed"}
+          whileHover={{ width: "500px" }}
+          transition={{ duration: 0.7 }}
         >
           <motion.div layout className=" h-96">
             <Image
-              className="hover:opacity-50 transition duration-150"
               src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
               alt={videoID}
               layout="fill"

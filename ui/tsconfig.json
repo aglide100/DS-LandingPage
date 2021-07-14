@@ -16,7 +16,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true

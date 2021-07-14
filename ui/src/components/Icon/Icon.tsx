@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 
 export type IconProps = {
-  which: "Logo" | "LogoMobile";
+  which: "Logo" | "LogoMobile" | "swLogo";
 };
 
 const Logo = (
@@ -441,13 +442,27 @@ const Logo = (
   </svg>
 );
 
+const swLogo = (
+  <>
+    <Image alt="sw logo" src="/sw_logo.png" width="350px" height="160px" />
+  </>
+);
+
 const Icon: React.FC<IconProps> = ({ which }) => {
   let iconElement;
-  if (which == "Logo") {
-    iconElement = Logo;
+  switch (which) {
+    case "Logo":
+      iconElement = Logo;
+      break;
+    case "swLogo":
+      iconElement = swLogo;
+      break;
+
+    default:
+      break;
   }
 
-  return <div>{iconElement}</div>;
+  return <div className="w-full h-full">{iconElement}</div>;
 };
 
 export default Icon;
