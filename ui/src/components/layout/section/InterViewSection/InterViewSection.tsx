@@ -1,5 +1,5 @@
 import React from "react";
-import { cardViewContainerProps } from "../../CardContainer/CardContainerProps";
+import { cardViewContainerProps } from "./CardContainer/CardContainerProps";
 import dynamic from "next/dynamic";
 import LoadingComponent from "../../../Loading/Loading";
 import LoadingError from "../../../LoadingError/LoadingError";
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const CardContainer = dynamic(
   () =>
-    import("../../CardContainer/CardContainer").catch((err) => {
+    import("./CardContainer/CardContainer").catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),
   {
@@ -18,7 +18,7 @@ const CardContainer = dynamic(
 
 const CardContainer2 = dynamic(
   () =>
-    import("../../CardContainer/CardContainer2").catch((err) => {
+    import("./CardContainer/CardContainer2").catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),
   {
@@ -31,9 +31,9 @@ const InterViewSection: React.FC<{}> = () => {
   return (
     <div>
       <div className="pb-40" />
-      <div className="flex flex-col justify-items-start">
+      <div className="ml-48 flex flex-col justify-center">
         <motion.div
-          className="w-16 h-16"
+          className="w-12 h-12"
           initial={{ rotate: 45 }}
           whileHover={{ rotate: 315 }}
           transition={{ duration: 1 }}

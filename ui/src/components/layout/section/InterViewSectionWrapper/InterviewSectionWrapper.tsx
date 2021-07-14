@@ -9,7 +9,7 @@ const InterViewSectionWrapper: React.FC<InterViewSectionWrapperProps> = (
 ) => {
   return (
     <div
-      className="w-full min-h-screen pl-48 pr-48 relative"
+      className="w-full min-h-screen relative overflow-x-hidden"
       style={{
         background: `repeating-linear-gradient(135deg, #404040, #404040 2px, #1f1f1f 1px, #1f1f1f 8px)`,
       }}
@@ -34,7 +34,7 @@ const InterViewSectionWrapper: React.FC<InterViewSectionWrapperProps> = (
           Create
         </div>
       </div>
-      <div>{props.children}</div>
+      <div className="max-w-max">{props.children}</div>
     </div>
   );
 };

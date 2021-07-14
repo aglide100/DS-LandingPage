@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { openSpring, closeSpring } from "./PopUp/animation";
+import { useScrollConstraints } from "../../../../Hooks/index";
 
 export type DepartmentViewProps = {
   imageUri: string;
@@ -11,76 +12,87 @@ export type DepartmentViewProps = {
   description: string;
 };
 
+const viewVariants = {
+  active: {
+    width: "100vw",
+    hight: "100vw",
+    x: 0,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 30 },
+  },
+  inactive: {
+    overflow: "hidden",
+    width: "288px",
+    transition: { type: "spring", stiffness: 300, damping: 35 },
+  },
+};
+
 const imageVariants = {
   open: {
-    width: "100%",
-    hight: "100%",
-    x: "100%",
-    y: "100%",
-    transition: {
-      duration: 1,
-    },
+    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
   },
-  hidden: {
-    width: "240px",
-    hight: "240px",
-    transition: {
-      duration: 1,
-    },
+  collapsed: {
+    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
   },
 };
 
 const DepartmentView: React.FC<DepartmentViewProps> = (props) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
+  const cardRef = useRef(null);
+  const constraints = useScrollConstraints(cardRef, isSelected);
+
   return (
     <AnimatePresence>
-      <div
+      <motion.div
+        ref={cardRef}
         className={classNames("flex flex-col items-center pb-10 pt-10", {
-          "w-72": !isSelected,
-          "top-0 left-0 right-0 fixed overflow-hidden": isSelected,
+          "z-50 bg-black fixed left-0 top-0": isSelected,
         })}
         onClick={(ev) => {
           setIsSelected(!isSelected);
         }}
+        variants={viewVariants}
+        initial="inactive"
+        drag={isSelected ? "y" : false}
+        dragConstraints={constraints}
+        transition={{ duration: 1000 }}
+        animate={isSelected ? "active" : "inactive"}
       >
         <motion.div
           className={classNames("transform", {
-            relative: isSelected,
+            "relative w-full": isSelected,
+            "w-60": !isSelected,
           })}
-          initial="hidden"
-          variants={imageVariants}
-          animate={isSelected ? "open" : "hidden"}
         >
-          <motion.div animate={isSelected ? openSpring : closeSpring}>
-            <div
-              className={classNames("", {
-                "w-full h-60": isSelected,
-                "w-60 h-60 ": !isSelected,
-              })}
-            >
-              <Image
-                className="rounded-full"
-                src={props.imageUri}
-                alt={props.imageAlt}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
+          <motion.div
+            className={classNames("", {
+              "w-full h-80": isSelected,
+              "w-60 h-60 ": !isSelected,
+            })}
+            initial="collapsed"
+            variants={imageVariants}
+            animate={isSelected ? "open" : "collapsed"}
+          >
+            <Image
+              className="rounded-full"
+              src={props.imageUri}
+              alt={props.imageAlt}
+              layout="fill"
+              objectFit="cover"
+            />
           </motion.div>
         </motion.div>
-        {isSelected ? (
-          <motion.div className="bg-blend-darken">
-            <span className="text-center text-lg text-white">
-              {props.description}
-            </span>
-          </motion.div>
-        ) : (
-          <span className="text-center text-lg text-white mt-10">
-            {props.title}
-          </span>
-        )}
-      </div>
+        <p className="text-center text-3xl text-white mt-10 mb-10">
+          {props.title}
+        </p>
+
+        <motion.div className="bg-blend-darken">
+          <p className="text-center text-lg text-white text-center">
+            {props.description}
+          </p>
+        </motion.div>
+      </motion.div>
     </AnimatePresence>
   );
 };

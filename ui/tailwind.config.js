@@ -14,11 +14,30 @@ module.exports = {
       color: {
         ds_gray: {
           1: "#545454",
+          2: "#4d4d4d",
+        },
+        ds_red: {
+          1: "#d1112c",
         },
       },
+
+      textColor: {
+        ds_gray: {
+          1: "#545454",
+          2: "#4d4d4d",
+        },
+        ds_red: {
+          1: "#d1112c",
+        },
+      },
+
       gradientColorStops: {
         ds_gray: {
           1: "#545454",
+          2: "#4d4d4d",
+        },
+        ds_red: {
+          1: "#d1112c",
         },
       },
       fontSize: {
@@ -28,7 +47,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      textColor: ["active"],
+      textColor: ["active", "responsive", "hover", "focus", "group-hover"],
     },
   },
   important: true,
