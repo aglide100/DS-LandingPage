@@ -53,9 +53,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
         </video>
       </div>
 
-      <div className="z-10  bg-yellow-400 w-full h-screen h-32 ">
-        {children}
-      </div>
+      <div className="z-10 bg-yellow-400 w-full h-screen">{children}</div>
     </div>
   );
 };

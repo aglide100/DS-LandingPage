@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 export type IconProps = {
   which: "Logo" | "LogoMobile" | "swLogo";
@@ -442,11 +441,7 @@ const Logo = (
   </svg>
 );
 
-const swLogo = (
-  <>
-    <Image alt="sw logo" src="/sw_logo.png" width="350px" height="160px" />
-  </>
-);
+const swLogo = <></>;
 
 const Icon: React.FC<IconProps> = ({ which }) => {
   let iconElement;
