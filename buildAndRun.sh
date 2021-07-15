@@ -4,7 +4,7 @@ export DockerService=/home/ubuntu/DS-LandingPage
 
 echo "====> Service Close Docker-compose"
 cd $DockerService
-docker-compose down --remove-orphans
+docker-compose down
 
 echo "====> Remove docker system"
 cd $DockerService
