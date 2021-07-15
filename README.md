@@ -64,7 +64,7 @@ css/및 사용된 라이브러리
 
 > [React-reveal][react-reveal-link]
 
-> [tailwindCss][tailwindcsslink]
+> [tailwindcss][tailwindcsslink]
 
 > [next-images][next-imageslink]
 

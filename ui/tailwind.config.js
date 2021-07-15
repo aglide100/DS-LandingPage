@@ -40,6 +40,7 @@ module.exports = {
           1: "#d1112c",
         },
       },
+
       fontSize: {
         bg: "12vw",
       },
