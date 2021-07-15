@@ -2,11 +2,11 @@ import React from "react";
 import LoadingComponent from "../src/components/Loading/Loading";
 import LoadingError from "../src/components/LoadingError/LoadingError";
 import dynamic from "next/dynamic";
-import InterViewSectionWrapper from "../src/components/layout/section/InterViewSectionWrapper/InterviewSectionWrapper";
-import TrophySectionWrapper from "../src/components/layout/section/TrophySectionWrapper/TrophySectionWrapper";
+import InterViewSectionWrapper from "../src/components/layout/InterViewSectionWrapper/InterviewSectionWrapper";
+import TrophySectionWrapper from "../src/components/layout/TrophySectionWrapper/TrophySectionWrapper";
 const IntroSection = dynamic(
   () =>
-    import("../src/components/layout/section/IntroSection/IntroSection").catch(
+    import("../src/components/layout/IntroSection/IntroSection").catch(
       (err) => {
         return () => <LoadingError>{err}</LoadingError>;
       }
@@ -16,7 +16,7 @@ const IntroSection = dynamic(
 
 const IntroChildren = dynamic(
   () =>
-    import("../src/components/layout/section/IntroSection/IntroChildren").catch(
+    import("../src/components/layout/IntroSection/IntroChildren").catch(
       (err) => {
         return () => <LoadingError>{err}</LoadingError>;
       }
@@ -27,7 +27,7 @@ const IntroChildren = dynamic(
 const InterViewSections = dynamic(
   () =>
     import(
-      "../src/components/layout/section/InterViewSection/InterViewSection"
+      "../src/components/layout/InterViewSection/InterViewSection"
     ).catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),
@@ -37,7 +37,7 @@ const InterViewSections = dynamic(
 const IntroduceDepartment = dynamic(
   () =>
     import(
-      "../src/components/layout/section/IntroduceDepartment/IntroduceDepartment"
+      "../src/components/layout/IntroduceDepartment/IntroduceDepartment"
     ).catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),

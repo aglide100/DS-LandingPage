@@ -1,6 +1,6 @@
 import React from "react";
 import IntroCardView from "./IntroCardView/IntroCardView";
-import ParallaxBox from "../../../ParallaxBox/ParallaxBox";
+import ParallaxBox from "../../ParallaxBox/ParallaxBox";
 
 const IntroChildren: React.FC<{}> = () => {
   return (
