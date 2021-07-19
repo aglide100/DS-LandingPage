@@ -2,8 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import classNames from "classnames";
-import { openSpring, closeSpring } from "./PopUp/animation";
-import { useScrollConstraints } from "../../../../Hooks/index";
+import { useScrollConstraints } from "../../../Hooks/index";
 
 export type DepartmentViewProps = {
   imageUri: string;

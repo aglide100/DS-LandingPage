@@ -1,8 +1,8 @@
 import React from "react";
 import { cardViewContainerProps } from "./CardContainer/CardContainerProps";
 import dynamic from "next/dynamic";
-import LoadingComponent from "../../../Loading/Loading";
-import LoadingError from "../../../LoadingError/LoadingError";
+import LoadingComponent from "../../Loading/Loading";
+import LoadingError from "../../LoadingError/LoadingError";
 import { motion } from "framer-motion";
 
 const CardContainer = dynamic(

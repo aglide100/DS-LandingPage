@@ -1,5 +1,5 @@
 import React, { useRef, ReactNode, useState } from "react";
-import { useIsShow, UseScrollHooksProps } from "../../../../Hooks";
+import { useIsShow, UseScrollHooksProps } from "../../../Hooks";
 import Image from "next/image";
 
 export type IntroSectionProps = {
@@ -48,7 +48,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
           ref={videoRef}
         >
           <source
-            src={require("../../../../../public/intro.mp4")}
+            src={require("../../../../public/intro.mp4")}
             type="video/mp4"
           />
         </video>

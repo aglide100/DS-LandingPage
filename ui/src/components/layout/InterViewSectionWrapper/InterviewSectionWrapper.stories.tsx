@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 import InterViewSectionWrapper, {
   InterViewSectionWrapperProps,
-} from "./InterViewSectionWrapper";
+} from "./InterviewSectionWrapper";
 export default {
   title: "Section/Wrapper/Interview",
   component: InterViewSectionWrapper,
