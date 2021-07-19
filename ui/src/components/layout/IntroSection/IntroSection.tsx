@@ -1,5 +1,6 @@
 import React, { useRef, ReactNode, useState } from "react";
 import { useIsShow, UseScrollHooksProps } from "../../../Hooks";
+import Image from "next/image";
 
 export type IntroSectionProps = {
   children: ReactNode;
@@ -53,7 +54,12 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
         </video>
       </div>
 
-      <div className="z-10 bg-yellow-400 w-full h-screen">{children}</div>
+      <div className="relative z-10 from-gray-200 bg-gradient-to-t to-white w-full h-screen flex flex-col items-center justify-around">
+        <div className="w-full h-full z-20">{children}</div>
+        <div className="absolute">
+          <Image src="/intro_15_img07.png" width="400" height="400" alt="" />
+        </div>
+      </div>
     </div>
   );
 };
