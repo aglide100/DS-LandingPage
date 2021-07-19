@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const IntroCardView: React.FC<{}> = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-white shadow-2xl mt-40 h-80">
+    <div className="w-full flex flex-col items-center justify-center w-full bg-white shadow-2xl mt-40 h-80">
       <div>
         <div className="flex flex-row items-center">
           <div className="relative w-40 h-20 mr-4 bottom-4">
@@ -53,4 +53,4 @@ const IntroCardView: React.FC<{}> = () => {
   );
 };
 
-export default IntroCardView;
+export default React.memo(IntroCardView);
