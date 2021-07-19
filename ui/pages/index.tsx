@@ -16,21 +16,21 @@ const IntroSection = dynamic(
 
 const IntroChildren = dynamic(
   () =>
-    import("../src/components/layout/IntroSection/IntroChildren").catch(
-      (err) => {
-        return () => <LoadingError>{err}</LoadingError>;
-      }
-    ),
+    import(
+      "../src/components/layout/IntroSection/IntroCardView/IntroCardView"
+    ).catch((err) => {
+      return () => <LoadingError>{err}</LoadingError>;
+    }),
   { loading: () => <LoadingComponent />, ssr: true }
 );
 
 const InterViewSections = dynamic(
   () =>
-    import(
-      "../src/components/layout/InterViewSection/InterViewSection"
-    ).catch((err) => {
-      return () => <LoadingError>{err}</LoadingError>;
-    }),
+    import("../src/components/layout/InterViewSection/InterViewSection").catch(
+      (err) => {
+        return () => <LoadingError>{err}</LoadingError>;
+      }
+    ),
   { loading: () => <LoadingComponent />, ssr: false }
 );
 

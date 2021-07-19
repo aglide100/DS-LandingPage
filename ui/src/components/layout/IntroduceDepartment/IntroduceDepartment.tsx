@@ -33,7 +33,7 @@ const departmentViewStoryENGINEER: DepartmentViewProps = {
 
 const IntroduceDepartment: React.FC<{}> = () => {
   return (
-    <div className="flex flex-col justify-center mt-20">
+    <div className="flex flex-col justify-center mt-20 mb-20">
       <div className="w-full">
         <Fade bottom triggerOnce={false} delay={100}>
           <div className="flex flex-col items-center">
