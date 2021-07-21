@@ -58,9 +58,12 @@ const CardView: React.FC<CardViewProps> = ({
   return (
     <motion.li
       layout
-      className={classNames("border border-solid h-96 order-" + order, {
-        "flex-nowrap": isOpen,
-      })}
+      className={classNames(
+        "border border-solid cursor-pointer h-96 order-" + order,
+        {
+          "flex-nowrap": isOpen,
+        }
+      )}
       onMouseEnter={(ev) => {
         ev.preventDefault();
         {
@@ -68,14 +71,11 @@ const CardView: React.FC<CardViewProps> = ({
           console.log(isFirst);
         }
       }}
-      // transition={{ duration: 1 }}
     >
       <motion.div className="flex flex-col items-center">
         <motion.div
           layout
-          className={classNames("relative overflow-hidden", {
-            // "w-117": order == 0 && isFirst,
-          })}
+          className="relative overflow-hidden"
           variants={cardVariants}
           initial={false}
           animate={
@@ -111,6 +111,12 @@ const CardView: React.FC<CardViewProps> = ({
               animate="show"
               exit="hidden"
               className="w-full"
+              onKeyPress={(ev) => {
+                ev.preventDefault();
+                if (ev.key === "esc") {
+                  onSelect(videoID, order);
+                }
+              }}
             >
               <ReactPlayer
                 className="relative left-0 top-0 w-full"

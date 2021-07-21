@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-import Icon from "../../Icon/Icon";
+import Icon from "../../atom/Icon/Icon";
 import Fade from "react-reveal/Fade";
 
 export type HeaderProps = {
@@ -55,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div
           className={classNames(
-            "cursor-pointer w-full flex justify-between items-center mt-1 mb-3 transition duration-500 transform items-center",
+            "w-full flex justify-between items-center mt-1 mb-3 transition duration-500 transform items-center",
             {
               "text-black translate-y-0 box-border":
                 isIconClick || (scrollY < 100 && scrollDirection == "down"),
@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({
           )}
         >
           <div
-            className={classNames("w-52", {
+            className={classNames("cursor-pointer w-52", {
               "bg-opacity-50":
                 scrollY > 100 && scrollDirection == "up" && !isIconClick,
             })}
@@ -75,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({
 
           <a
             className={classNames(
-              "menu-trigger type12 transform translate-y-4 mr-2 sm:mr-6 z-50",
+              "cursor-pointer menu-trigger type12 transform translate-y-4 mr-2 sm:mr-6 z-50",
               {
                 "active-12": isIconClick,
                 "": !isIconClick,
@@ -87,15 +87,19 @@ const Header: React.FC<HeaderProps> = ({
             }}
           >
             <span
-              className={classNames("bg-black", {
+              className={classNames("bg-black select-none", {
                 "bg-white": isIconClick,
               })}
             ></span>
             <span
-              className={classNames("bg-black", { "bg-white": isIconClick })}
+              className={classNames("bg-black select-none", {
+                "bg-white": isIconClick,
+              })}
             ></span>
             <span
-              className={classNames("bg-black", { "bg-white": isIconClick })}
+              className={classNames("bg-black select-none", {
+                "bg-white": isIconClick,
+              })}
             ></span>
           </a>
         </div>
@@ -103,12 +107,12 @@ const Header: React.FC<HeaderProps> = ({
       <motion.nav initial={false} animate={isIconClick ? "open" : "closed"}>
         <motion.div
           className={classNames(
-            "fixed bg-black w-screen h-screen z-30 top-0 transition z-30 transform",
+            "fixed bg-black w-screen h-screen z-30 -top-10 transition z-30 transform",
             {
               "translate-y-0 right-0": isIconClick,
               "bg-opacity-50 -translate-y-10 hover:translate-y-0 hover:bg-opacity-100 h-110vh":
                 scrollY > 100 && scrollDirection == "up" && !isIconClick,
-              "-translate-y-10 box-border h-110vh -right-10 ":
+              "-translate-y-10 box-border h-110vh ":
                 scrollY > 100 && scrollDirection == "down" && !isIconClick,
               // "bg-opacity-0": scrollY > 100 && !isIconClick,
             }

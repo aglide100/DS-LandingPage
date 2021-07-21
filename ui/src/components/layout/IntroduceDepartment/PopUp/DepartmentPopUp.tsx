@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DepartmentImage from "./DepartmentImage";
 import { motion } from "framer-motion";
 
 export type DepartmentPopUpProps = {

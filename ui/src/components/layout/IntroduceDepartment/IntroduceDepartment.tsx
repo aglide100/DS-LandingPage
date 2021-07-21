@@ -58,14 +58,21 @@ const IntroduceDepartment: React.FC<{}> = () => {
           </div>
         </Fade>
       </div>
-      <Fade bottom triggerOnce={false} delay={200}>
-        <div className="flex flex-row justify-around">
+
+      <div className="flex flex-row justify-around">
+        <Fade bottom triggerOnce={false} duration={800} delay={200}>
           <DepartmentView {...departmentViewStorySW} />
+        </Fade>
+        <Fade bottom triggerOnce={false} duration={800} delay={300}>
           <DepartmentView {...departmentViewStoryAI} />
+        </Fade>
+        <Fade bottom triggerOnce={false} duration={800} delay={400}>
           <DepartmentView {...departmentViewStoryPROTECT} />
+        </Fade>
+        <Fade bottom triggerOnce={false} duration={800} delay={500}>
           <DepartmentView {...departmentViewStoryENGINEER} />
-        </div>
-      </Fade>
+        </Fade>
+      </div>
     </div>
   );
 };

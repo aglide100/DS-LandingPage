@@ -9,7 +9,7 @@ const InterViewSectionWrapper: React.FC<InterViewSectionWrapperProps> = (
 ) => {
   return (
     <div
-      className="w-full min-h-screen relative overflow-x-hidden"
+      className="w-full min-h-screen relative overflow-x-hidden cursor-default select-none"
       style={{
         background: `repeating-linear-gradient(135deg, #404040, #404040 1px, #1f1f1f 2px, #1f1f1f 12px)`,
       }}
