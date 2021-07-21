@@ -83,7 +83,7 @@ const CardView2: React.FC<CardView2Props> = ({
                   창닫기
                 </div>
                 <ReactPlayer
-                  className="top-28 w-10/12 h-10/12"
+                  className="top-28 "
                   url={"https://youtube.com/watch?v=" + videoID}
                   playing={isOpen}
                   controls

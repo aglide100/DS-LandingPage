@@ -6,10 +6,11 @@ import Image from "next/image";
 
 export type CardViewProps = {
   videoID: string;
-  isYoutube: boolean;
   isOpen: boolean;
   order: number;
-  onSelect: (videoID: string) => void;
+  isFirst: boolean;
+  onSelect: (videoID: string, order: number) => void;
+  onHover: () => void;
 };
 
 const cardVariants = {
@@ -48,34 +49,46 @@ const contentVariants = {
 
 const CardView: React.FC<CardViewProps> = ({
   videoID,
-  isYoutube,
   isOpen,
   order,
+  isFirst,
   onSelect,
+  onHover,
 }) => {
   return (
     <motion.li
       layout
-      initial={{ borderRadius: 10 }}
-      className={classNames(
-        "border border-solid flex-initial h-96 order-" + order,
+      className={classNames("border border-solid h-96 order-" + order, {
+        "flex-nowrap": isOpen,
+      })}
+      onMouseEnter={(ev) => {
+        ev.preventDefault();
         {
-          "mr-0 flex-nowrap": isOpen,
-          "flex-none": !isOpen,
+          isFirst ? onHover() : null;
+          console.log(isFirst);
         }
-      )}
+      }}
+      // transition={{ duration: 1 }}
     >
       <motion.div className="flex flex-col items-center">
         <motion.div
           layout
-          className="relative overflow-hidden"
+          className={classNames("relative overflow-hidden", {
+            // "w-117": order == 0 && isFirst,
+          })}
           variants={cardVariants}
           initial={false}
-          animate={isOpen ? "expanded" : "collapsed"}
-          whileHover={{ width: "500px" }}
+          animate={
+            isOpen
+              ? "expanded"
+              : order == 0 && isFirst
+              ? { width: "31.25rem" }
+              : "collapsed"
+          }
+          whileHover={{ width: "31.25rem" }}
           transition={{ duration: 0.7 }}
         >
-          <motion.div layout className=" h-96">
+          <motion.div className="w-full h-96">
             <Image
               src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
               alt={videoID}
@@ -83,7 +96,7 @@ const CardView: React.FC<CardViewProps> = ({
               objectFit="cover"
               onClick={(ev) => {
                 ev.preventDefault();
-                onSelect(videoID);
+                onSelect(videoID, order);
               }}
             />
           </motion.div>
@@ -104,7 +117,7 @@ const CardView: React.FC<CardViewProps> = ({
                 url={"https://youtube.com/watch?v=" + videoID}
                 playing={isOpen}
                 controls
-                css={{ maxWidth: "900px" }}
+                css={{ maxWidth: "800px" }}
               />
             </motion.div>
           )}

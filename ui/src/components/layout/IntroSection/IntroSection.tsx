@@ -72,8 +72,9 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
           <motion.div
             style={{
               width: "100%",
-              y,
+              y: y,
               position: "absolute",
+              transitionDuration: "1",
             }}
           >
             {children}
