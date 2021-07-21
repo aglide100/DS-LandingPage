@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react";
 import LoadingComponent from "./Loading";
 
 export default {
-  title: "Component/Loading",
+  title: "Atom/Loading",
   component: LoadingComponent,
 } as Meta;
 

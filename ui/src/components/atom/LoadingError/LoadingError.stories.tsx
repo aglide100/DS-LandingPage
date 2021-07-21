@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react";
 import LoadingError, { LoadingErrorProps } from "./LoadingError";
 
 export default {
-  title: "Component/LoadingError",
+  title: "Atom/LoadingError",
   component: LoadingError,
 } as Meta;
 

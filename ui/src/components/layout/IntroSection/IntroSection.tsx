@@ -74,7 +74,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
               width: "100%",
               y: y,
               position: "absolute",
-              transitionDuration: "1",
+              transitionDuration: "0",
             }}
           >
             {children}

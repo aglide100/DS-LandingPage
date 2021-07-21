@@ -5,7 +5,7 @@ import { Meta, Story } from "@storybook/react";
 import { cardViewContainerProps } from "./CardContainerProps";
 
 export default {
-  title: "Components/Card",
+  title: "Layout/InterView/Card",
   component: CardContainer,
 } as Meta;
 
