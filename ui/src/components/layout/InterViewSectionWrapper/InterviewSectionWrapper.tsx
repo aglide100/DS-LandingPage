@@ -11,30 +11,21 @@ const InterViewSectionWrapper: React.FC<InterViewSectionWrapperProps> = (
     <div
       className="w-full min-h-screen relative overflow-x-hidden"
       style={{
-        background: `repeating-linear-gradient(135deg, #404040, #404040 2px, #1f1f1f 1px, #1f1f1f 8px)`,
+        background: `repeating-linear-gradient(135deg, #404040, #404040 1px, #1f1f1f 2px, #1f1f1f 12px)`,
       }}
     >
-      <div className="absolute top-0 right-0  flex flex-col">
-        <div
-          style={{ color: "#545454" }}
-          className="text-bg cursor-default mix-blend-overlay "
-        >
+      <div className="absolute top-0 right-0 flex flex-col">
+        <div className="text-bg text-ds_gray-1 cursor-default opacity-25 ">
           Compute
         </div>
-        <div
-          style={{ color: "#545454" }}
-          className="text-bg cursor-default mix-blend-overlay "
-        >
+        <div className="relative left-1/4 text-bg text-ds_gray-1 cursor-default opacity-25 ">
           Converge
         </div>
-        <div
-          style={{ color: "#545454" }}
-          className="text-bg cursor-default mix-blend-overlay "
-        >
+        <div className="text-bg text-ds_gray-1 cursor-default opacity-25 ">
           Create
         </div>
       </div>
-      <div className="max-w-max">{props.children}</div>
+      {props.children}
     </div>
   );
 };

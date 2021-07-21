@@ -8,8 +8,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        117: "31.25rem",
+      },
       height: {
         "110vh": "110vh",
+      },
+      transitionDuration: {
+        0: "0ms",
+        2000: "2000ms",
       },
       color: {
         ds_gray: {

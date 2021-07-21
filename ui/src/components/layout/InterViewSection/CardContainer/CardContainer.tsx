@@ -15,15 +15,29 @@ export type CardContainerItemProps = {
 const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const onSelect = (selectedVideoID: string) => {
+  const onSelect = (selectedVideoID: string, order: number) => {
+    const offsetOrder = (cardViewListItem.length - 1) / 2;
     const list = cardViewListItem.map((cardView) => {
       if (cardView.videoID == selectedVideoID) {
         cardView.isOpen = !cardView.isOpen;
-        cardView.order = cardViewListItem.length;
+        cardView.order = offsetOrder;
       } else {
         cardView.isOpen = false;
-        if (cardView.order != 0) {
+        if (
+          cardView.order == 0 ||
+          cardView.order == cardViewListItem.length - 1
+        ) {
+          // ok
+        } else if (cardView.order > offsetOrder) {
+          cardView.order++;
+        } else if (cardView.order < offsetOrder) {
           cardView.order--;
+        } else if (cardView.order == offsetOrder) {
+          if (order > offsetOrder) {
+            cardView.order++;
+          } else {
+            cardView.order--;
+          }
         }
       }
       return cardView;
@@ -33,11 +47,22 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
     setCardViewListItem(list);
   };
 
+  const onHover = () => {
+    const list = cardViewListItem.map((cardView) => {
+      cardView.isFirst = false;
+      return cardView;
+    });
+
+    setCardViewListItem(list);
+  };
+
   const initCardViewList: CardViewProps[] = cardViewList.map(
     (cardView, index) => {
       return {
         isOpen: false,
         onSelect: onSelect,
+        onHover: onHover,
+        isFirst: true,
         videoID: cardView.videoID,
         isYoutube: cardView.isYoutube,
         order: index,
@@ -54,18 +79,17 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
       <CardView
         key={cardView.videoID}
         videoID={cardView.videoID}
-        isYoutube={cardView.isYoutube}
         isOpen={cardView.isOpen}
         order={cardView.order}
+        isFirst={cardView.isFirst}
         onSelect={onSelect}
+        onHover={onHover}
       />
     );
   });
 
   return (
     <motion.ul
-      layout
-      initial={{ borderRadius: 25 }}
       className={classNames(
         "flex flex-row flex-nowrap justify-around px-48 hover:px-0",
         {
