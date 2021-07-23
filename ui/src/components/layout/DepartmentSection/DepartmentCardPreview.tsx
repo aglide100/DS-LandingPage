@@ -28,14 +28,14 @@ const viewVariants = {
   },
 };
 
-const imageVariants = {
-  open: {
-    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
-  },
-  collapsed: {
-    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
-  },
-};
+// const imageVariants = {
+//   open: {
+//     transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
+//   },
+//   collapsed: {
+//     transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
+//   },
+// };
 
 const DepartmentCardPreview: React.FC<DepartmentCardPreviewProps> = (props) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);

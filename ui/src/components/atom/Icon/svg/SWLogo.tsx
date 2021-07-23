@@ -1,6 +1,6 @@
 import React from "react";
 
-const SwLogo: React.FC<{}> = () => {
+const SWlogo: React.FC<{}> = () => {
   return (
     <svg
       className="w-full h-full"
@@ -573,4 +573,4 @@ const SwLogo: React.FC<{}> = () => {
   );
 };
 
-export default SwLogo;
+export default SWlogo;
