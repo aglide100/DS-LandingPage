@@ -90,3 +90,4 @@ css/및 사용된 라이브러리
 [dockerhublink]: https://hub.docker.com/r/aglide100/ds-landing-page
 [react-playerlink]: https://github.com/CookPete/react-player
 [framerlink]: https://www.framer.com/
+[playbacksvglink]: https://www.svgrepo.com/svg/13672/play-button

@@ -20,18 +20,18 @@ const cardViewProps5: CardContainerItemProps = {
   isYoutube: true,
   videoID: "HMnatoiMdjA",
 };
-const cardViewProps6: CardContainerItemProps = {
-  isYoutube: true,
-  videoID: "mkggXE5e2yk",
-};
-const cardViewProps7: CardContainerItemProps = {
-  isYoutube: true,
-  videoID: "mA30W2dHQIo",
-};
-const cardViewProps8: CardContainerItemProps = {
-  isYoutube: true,
-  videoID: "MGpheC1T66k",
-};
+// const cardViewProps6: CardContainerItemProps = {
+//   isYoutube: true,
+//   videoID: "mkggXE5e2yk",
+// };
+// const cardViewProps7: CardContainerItemProps = {
+//   isYoutube: true,
+//   videoID: "mA30W2dHQIo",
+// };
+// const cardViewProps8: CardContainerItemProps = {
+//   isYoutube: true,
+//   videoID: "MGpheC1T66k",
+// };
 export const cardViewContainerProps = [
   cardViewProps1,
   cardViewProps2,

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import CardView, { CardViewProps } from "./CardView";
+import CardView, { CardViewProps } from "./CardView/CardView";
 import classNames from "classnames";
 
 export type CardContainerProps = {

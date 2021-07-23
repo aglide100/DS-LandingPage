@@ -2,7 +2,7 @@ import React from "react";
 import CardContainer, { CardContainerProps } from "./CardContainer";
 import { Meta, Story } from "@storybook/react";
 
-import { cardViewContainerProps } from "./CardContainerProps";
+import { cardViewContainerProps } from "./CardContainerItems";
 
 export default {
   title: "Layout/InterView/Card",
