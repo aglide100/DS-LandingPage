@@ -1,6 +1,6 @@
 import React from "react";
 
-const SWlogo: React.FC<{}> = () => {
+const Circle_logo: React.FC<{}> = () => {
   return (
     <svg
       className="w-full h-full"
@@ -573,4 +573,4 @@ const SWlogo: React.FC<{}> = () => {
   );
 };
 
-export default SWlogo;
+export default Circle_logo;
