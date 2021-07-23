@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import InterViewSection from "../InterViewSection/InterViewSection";
-import IntroduceDepartment from "../IntroduceDepartment/IntroduceDepartment";
+import IntroduceDepartment from "../DepartmentSection/DepartmentSection";
 import InterViewSectionWrapper, {
   InterViewSectionWrapperProps,
 } from "./InterviewSectionWrapper";

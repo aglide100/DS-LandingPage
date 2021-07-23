@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-import Icon from "../../atom/Icon/Icon";
 import Fade from "react-reveal/Fade";
+import Logo from "../../atom/Icon/svg/Logo";
 
 export type HeaderProps = {
   isShow: boolean | undefined;
@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
                 scrollY > 100 && scrollDirection == "up" && !isIconClick,
             })}
           >
-            <Icon which="Logo" />
+            <Logo />
           </div>
 
           <a

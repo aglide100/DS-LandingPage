@@ -24,7 +24,7 @@ const IntroChildren = dynamic(
   { loading: () => <LoadingComponent />, ssr: true }
 );
 
-const InterViewSections = dynamic(
+const InterViewSection = dynamic(
   () =>
     import("../src/components/layout/InterViewSection/InterViewSection").catch(
       (err) => {
@@ -34,10 +34,10 @@ const InterViewSections = dynamic(
   { loading: () => <LoadingComponent />, ssr: false }
 );
 
-const IntroduceDepartment = dynamic(
+const DepartmentSection = dynamic(
   () =>
     import(
-      "../src/components/layout/IntroduceDepartment/IntroduceDepartment"
+      "../src/components/layout/DepartmentSection/DepartmentSection"
     ).catch((err) => {
       return () => <LoadingError>{err}</LoadingError>;
     }),
@@ -54,8 +54,8 @@ export default function Home() {
       </div>
       <div className="bg-white z-20">
         <InterViewSectionWrapper>
-          <InterViewSections />
-          <IntroduceDepartment />
+          <InterViewSection />
+          <DepartmentSection />
         </InterViewSectionWrapper>
         <TrophySectionWrapper>
           <span>주요성과</span>

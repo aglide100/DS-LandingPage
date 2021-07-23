@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       width: {
         117: "31.25rem",
+        200: "56rem",
       },
       height: {
         "110vh": "110vh",
@@ -55,6 +56,8 @@ module.exports = {
   },
   variants: {
     extend: {
+      maxWidth: ["active", "responsive", "hover", "focus", "group-hover"],
+      width: ["active", "responsive", "hover", "focus", "group-hover"],
       textColor: ["active", "responsive", "hover", "focus", "group-hover"],
     },
   },

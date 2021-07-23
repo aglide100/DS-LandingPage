@@ -1,12 +1,12 @@
 import React, { useRef, ReactNode, useState } from "react";
 import { useIsShow, UseScrollHooksProps } from "../../../Hooks";
-import Image from "next/image";
 import {
   motion,
   useViewportScroll,
   useTransform,
   useSpring,
 } from "framer-motion";
+import SWLogo from "../../atom/Icon/svg/swLogo";
 
 export type IntroSectionProps = {
   children: ReactNode;
@@ -81,7 +81,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
           </motion.div>
         </div>
         <div className="absolute">
-          <Image src="/intro_15_img07.png" width="400" height="400" alt="" />
+          <SWLogo />
         </div>
       </div>
     </div>

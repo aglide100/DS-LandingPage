@@ -1,10 +1,12 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { useScrollConstraints } from "../../../Hooks/index";
+import DepartmentPopUp from "./PopUp/DepartmentPopUp";
 
-export type DepartmentViewProps = {
+export type DepartmentCardPreviewProps = {
+  id: string;
   imageUri: string;
   imageAlt: string;
   title: string;
@@ -12,14 +14,14 @@ export type DepartmentViewProps = {
 };
 
 const viewVariants = {
-  active: {
+  expanded: {
     width: "100vw",
     hight: "100vw",
     x: 0,
     y: 0,
     transition: { type: "spring", stiffness: 200, damping: 30 },
   },
-  inactive: {
+  collapsed: {
     overflow: "hidden",
     width: "288px",
     transition: { type: "spring", stiffness: 300, damping: 35 },
@@ -35,44 +37,29 @@ const imageVariants = {
   },
 };
 
-const DepartmentView: React.FC<DepartmentViewProps> = (props) => {
+const DepartmentCardPreview: React.FC<DepartmentCardPreviewProps> = (props) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   const cardRef = useRef(null);
   const constraints = useScrollConstraints(cardRef, isSelected);
 
   return (
-    <AnimatePresence>
+    <>
       <motion.div
         ref={cardRef}
         className={classNames("flex flex-col items-center pb-10 pt-10", {
-          "z-50 bg-black fixed left-0 top-0": isSelected,
+          fixed: isSelected,
         })}
         onClick={(ev) => {
           setIsSelected(!isSelected);
         }}
-        variants={viewVariants}
-        initial="inactive"
         drag={isSelected ? "y" : false}
         dragConstraints={constraints}
-        transition={{ duration: 1000 }}
-        animate={isSelected ? "active" : "inactive"}
+        variants={viewVariants}
+        animate={isSelected ? "expanded" : "collapsed"}
       >
-        <motion.div
-          className={classNames("transform", {
-            "relative w-full": isSelected,
-            "w-60": !isSelected,
-          })}
-        >
-          <motion.div
-            className={classNames("", {
-              "w-full h-80": isSelected,
-              "w-60 h-60 ": !isSelected,
-            })}
-            initial="collapsed"
-            variants={imageVariants}
-            animate={isSelected ? "open" : "collapsed"}
-          >
+        <AnimateSharedLayout type="crossfade">
+          <motion.div className="w-60 h-52">
             <Image
               className="rounded-full"
               src={props.imageUri}
@@ -81,19 +68,19 @@ const DepartmentView: React.FC<DepartmentViewProps> = (props) => {
               objectFit="cover"
             />
           </motion.div>
-        </motion.div>
-        <p className="text-center text-3xl text-white mt-10 mb-10">
-          {props.title}
-        </p>
 
-        <motion.div className="bg-blend-darken">
-          <p className="text-center text-lg text-white text-center">
-            {props.description}
-          </p>
-        </motion.div>
+          {isSelected && (
+            <DepartmentPopUp
+              imageUri={props.imageUri}
+              imageAlt={props.imageAlt}
+              title={props.title}
+              description={props.description}
+            />
+          )}
+        </AnimateSharedLayout>
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 };
 
-export default DepartmentView;
+export default DepartmentCardPreview;

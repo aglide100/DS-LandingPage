@@ -13,17 +13,26 @@ export type CardViewProps = {
   onHover: () => void;
 };
 
+// const playbackVariants = {
+//   hover: {
+//     opacity: 0,
+//   },
+//   collapsed: {
+//     opacity: 1,
+//   },
+// };
+
 const cardVariants = {
   expanded: {
-    width: "900px",
-    height: "144px",
+    width: "750px",
+    height: "100px",
     transition: {
       duration: 1,
     },
   },
   collapsed: {
-    width: "144px",
-    hight: "384px",
+    width: "150px",
+    hight: "400px",
     transition: {
       duration: 1,
     },
@@ -39,7 +48,8 @@ const contentVariants = {
     },
   },
   hidden: {
-    maxWidth: "900px",
+    maxWidth: "750px",
+    maxHeight: "900px",
     opacity: 0,
     transition: {
       duration: 0.5,
@@ -58,51 +68,50 @@ const CardView: React.FC<CardViewProps> = ({
   return (
     <motion.li
       layout
-      className={classNames(
-        "border border-solid cursor-pointer h-96 order-" + order,
-        {
-          "flex-nowrap": isOpen,
-        }
-      )}
+      className={classNames("cursor-pointer order-" + order, {
+        "flex-nowrap": isOpen,
+      })}
       onMouseEnter={(ev) => {
         ev.preventDefault();
         {
           isFirst ? onHover() : null;
-          console.log(isFirst);
         }
       }}
+      whileHover="hover"
     >
       <motion.div className="flex flex-col items-center">
-        <motion.div
-          layout
-          className="relative overflow-hidden"
-          variants={cardVariants}
-          initial={false}
-          animate={
-            isOpen
-              ? "expanded"
-              : order == 0 && isFirst
-              ? { width: "31.25rem" }
-              : "collapsed"
-          }
-          whileHover={{ width: "31.25rem" }}
-          transition={{ duration: 0.7 }}
-        >
-          <motion.div className="w-full h-96">
-            <Image
-              src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
-              alt={videoID}
-              layout="fill"
-              objectFit="cover"
-              onClick={(ev) => {
-                ev.preventDefault();
-                onSelect(videoID, order);
-              }}
-            />
-          </motion.div>
-        </motion.div>
-
         <AnimatePresence>
+          <motion.div
+            layout
+            className="relative overflow-hidden"
+            variants={cardVariants}
+            initial={false}
+            animate={
+              isOpen
+                ? "expanded"
+                : order == 0 && isFirst
+                ? { width: "28rem" }
+                : "collapsed"
+            }
+            whileHover={{ width: "28rem" }}
+            transition={{ duration: 0.7 }}
+          >
+            <motion.div className="w-full h-96">
+              {/* <motion.div className="z-10 w-10 h-10 absolute top-1/2 right-1/2">
+                <Icon which="playback" />
+              </motion.div> */}
+              <Image
+                src={"https://img.youtube.com/vi/" + videoID + "/sddefault.jpg"}
+                alt={videoID}
+                layout="fill"
+                objectFit="cover"
+                onClick={(ev) => {
+                  ev.preventDefault();
+                  onSelect(videoID, order);
+                }}
+              />
+            </motion.div>
+          </motion.div>
           {isOpen && (
             <motion.div
               layout
@@ -123,7 +132,7 @@ const CardView: React.FC<CardViewProps> = ({
                 url={"https://youtube.com/watch?v=" + videoID}
                 playing={isOpen}
                 controls
-                css={{ maxWidth: "800px" }}
+                css={{ maxWidth: "750px" }}
               />
             </motion.div>
           )}
