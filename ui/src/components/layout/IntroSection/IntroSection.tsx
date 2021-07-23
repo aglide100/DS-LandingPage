@@ -6,7 +6,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import SWlogo from "../../atom/Icon/svg/SWlogo";
+import Circle_logo from "../../atom/Icon/CircleLogo";
 
 export type IntroSectionProps = {
   children: ReactNode;
@@ -81,7 +81,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ children }) => {
           </motion.div>
         </div>
         <div className="absolute" style={{ width: "400px", height: "400px" }}>
-          <SWlogo />
+          <Circle_logo />
         </div>
       </div>
     </div>

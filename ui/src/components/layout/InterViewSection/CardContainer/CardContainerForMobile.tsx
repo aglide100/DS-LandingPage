@@ -1,6 +1,6 @@
 import { motion, AnimateSharedLayout } from "framer-motion";
 import React, { useState } from "react";
-import CardView2, { CardView2Props } from "./CardViewForMobile";
+import CardView2, { CardView2Props } from "./CardView/CardViewForMobile";
 
 export type CardContainerProps = {
   cardViewList: CardContainerItemProps[];

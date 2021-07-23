@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { cardViewContainerProps } from "./CardContainer/CardContainerProps";
+import { cardViewContainerProps } from "./CardContainer/CardContainerItems";
 import dynamic from "next/dynamic";
 import LoadingComponent from "../../atom/Loading/Loading";
 import LoadingError from "../../atom/LoadingError/LoadingError";

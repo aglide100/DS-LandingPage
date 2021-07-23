@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import Fade from "react-reveal/Fade";
-import Logo from "../../atom/Icon/svg/Logo";
+import Logo from "../../atom/Icon/Logo";
 
 export type HeaderProps = {
   isShow: boolean | undefined;
