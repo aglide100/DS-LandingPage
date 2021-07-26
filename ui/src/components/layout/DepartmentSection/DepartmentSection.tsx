@@ -1,20 +1,21 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
-import DepartmentCardView from "./DepartmentCardPreview";
+import DepartmentCardView from "./DepartmentCardView";
 import { departmentCardViewStorys } from "./DepartmentItems";
+import { AnimateSharedLayout, motion } from "framer-motion";
 
 const DepartmentSection: React.FC<{}> = () => {
   const departmentList = departmentCardViewStorys.map((view, index) => {
     return (
-      <Fade
-        key={view.title}
-        bottom
-        triggerOnce={false}
-        duration={800}
-        delay={200 + index * 150}
-      >
-        <DepartmentCardView {...view} />
-      </Fade>
+      // <Fade
+      //   key={view.title}
+      //   bottom
+      //   triggerOnce={false}
+      //   duration={800}
+      //   delay={200 + index * 150}
+      // >
+
+      <DepartmentCardView {...view} key={view.title} />
     );
   });
 
@@ -37,15 +38,18 @@ const DepartmentSection: React.FC<{}> = () => {
             >
               <div className="w-full h-px bg-ds_gray-1 bg-gradient-to-l from-ds_gray-1 via-ds_gray-1" />
               <span className="whitespace-nowrap text-white text-4xl ml-6 mr-6">
-                학과 소개
+                ~~~~
               </span>
               <div className="w-full h-px bg-ds_gray-1 bg-gradient-to-r from-ds_gray-1 via-ds_gray-1" />
             </div>
           </div>
         </Fade>
       </div>
-
-      <div className="flex flex-row justify-around">{departmentList}</div>
+      <AnimateSharedLayout type="crossfade">
+        <motion.ul className="flex flex-row justify-around">
+          {departmentList}
+        </motion.ul>
+      </AnimateSharedLayout>
     </div>
   );
 };

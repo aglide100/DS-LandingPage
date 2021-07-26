@@ -1,4 +1,4 @@
-import { DepartmentCardPreviewProps } from "./DepartmentCardPreview";
+import { DepartmentCardPreviewProps } from "./DepartmentCardView";
 
 const departmentCardViewStorySW: DepartmentCardPreviewProps = {
   id: "a",
