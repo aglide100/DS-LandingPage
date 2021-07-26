@@ -6,17 +6,9 @@ import { AnimateSharedLayout, motion } from "framer-motion";
 
 const DepartmentSection: React.FC<{}> = () => {
   const departmentList = departmentCardViewStorys.map((view, index) => {
-    return (
-      // <Fade
-      //   key={view.title}
-      //   bottom
-      //   triggerOnce={false}
-      //   duration={800}
-      //   delay={200 + index * 150}
-      // >
-
-      <DepartmentCardView {...view} key={view.title} />
-    );
+    const props = view;
+    props.index = index;
+    return <DepartmentCardView {...props} key={view.title} />;
   });
 
   return (
