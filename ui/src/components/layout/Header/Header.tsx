@@ -107,9 +107,9 @@ const Header: React.FC<HeaderProps> = ({
       <motion.nav initial={false} animate={isIconClick ? "open" : "closed"}>
         <motion.div
           className={classNames(
-            "fixed bg-black w-screen h-screen z-30 -top-10 transition z-30 transform",
+            "fixed bg-black w-screen h-screen z-30 transition z-30 transform",
             {
-              "translate-y-0 right-0": isIconClick,
+              "translate-y-0 right-0 ": isIconClick,
               "bg-opacity-50 -translate-y-10 hover:translate-y-0 hover:bg-opacity-100 h-110vh":
                 scrollY > 100 && scrollDirection == "up" && !isIconClick,
               "-translate-y-10 box-border h-110vh ":

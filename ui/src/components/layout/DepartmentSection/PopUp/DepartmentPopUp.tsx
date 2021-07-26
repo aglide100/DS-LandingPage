@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export type DepartmentPopUpProps = {
   imageUri: string;
   imageAlt: string;
   title: string;
   description: string;
+  id: string;
+  setIsSelected: (boolean) => void;
+  children: React.ReactNode;
+};
+const imageVariants = {
+  open: {
+    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
+  },
+  collapsed: {
+    transition: { duration: 0.6, type: "spring", damping: 10, mass: 0.6 },
+  },
 };
 
 const DepartmentPopUp: React.FC<DepartmentPopUpProps> = (props) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const isOK = true;
+
   return (
     <>
-      <motion.div
-        className="z-10 fixed top-0 bottom-0"
-        css={{ width: "100vw" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.15 } }}
-        transition={{ duration: 0.2, delay: 0.15 }}
-        style={{ pointerEvents: "auto" }}
-        onClick={(ev) => {
-          ev.preventDefault(), setIsSelected(!isSelected);
-        }}
-      ></motion.div>
-
-      <motion.div>{props.description}</motion.div>
+      <motion.div className="fixed top-0 left-0">
+        {props.children}
+        <motion.div>{props.description}</motion.div>
+      </motion.div>
     </>
   );
 };
