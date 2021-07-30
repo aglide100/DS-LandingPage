@@ -7,7 +7,7 @@ import "../styles/globals.css";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useGetScroll, UseScrollHooksProps } from "../src/Hooks";
-import {AnimatePresence, motion} from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,32 +15,33 @@ function MyApp({ Component, pageProps }: AppProps) {
   const headerNode = useRef<HTMLDivElement>(null);
 
   const useScrollHooksProps: UseScrollHooksProps = {
-    receivedRef: headerNode,
+    receivedRef: headerNode
   };
 
   const result = useGetScroll(useScrollHooksProps);
 
   // SSR시 서버에서는 window, document객체가 없기에 예외 처리
-  if (typeof window !== "undefined") {
-    const handleResize = () => {
-      if (window.innerWidth <= 600) {
-        if (router.pathname != "mobile"){
-          router.push("/mobile");
-        }
-      } else {
-        if (router.pathname != "/"){
-        router.push("/")
-        }
-      }
-    }
 
-    useEffect(() => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        if (window.innerWidth <= 600) {
+          if (router.pathname != "mobile") {
+            router.push("/mobile");
+          }
+        } else {
+          if (router.pathname != "/") {
+            router.push("/");
+          }
+        }
+      };
+
       window.addEventListener("resize", handleResize);
       return () => {
         window.removeEventListener("resize", handleResize);
-      }
-    })
-  }
+      };
+    }
+  });
 
   return (
     <div className="flex flex-col justify-between h-screen">
@@ -59,10 +60,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div ref={headerNode}>
           <Header {...result}></Header>
         </div>
-        <AnimatePresence exitBeforeEnter initial={false} onExitComplete={() => window.scrollTo(0,0)}>
-        <motion.div key={router.pathname} className="w-screen flex justify-center mt-24 overflow-x-hidden" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0}} transition={{duration: 0.7}}>
-          <Component {...pageProps} key={router.pathname} />
-        </motion.div>
+        <AnimatePresence
+          exitBeforeEnter
+          initial={false}
+          onExitComplete={() => window.scrollTo(0, 0)}
+        >
+          <motion.div
+            key={router.pathname}
+            className="w-screen flex justify-center mt-24 overflow-x-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <Component {...pageProps} key={router.pathname} />
+          </motion.div>
         </AnimatePresence>
       </div>
       <div className="z-30">
