@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../src/components/layout/Header/Header";
 import { Footer } from "../src/components/layout/Footer/Footer";
 import type { AppProps } from "next/app";
@@ -14,6 +14,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const headerNode = useRef<HTMLDivElement>(null);
 
+  const [hasBeenLoaded, setHasBeenLoaded] = useState(false);
+
   const useScrollHooksProps: UseScrollHooksProps = {
     receivedRef: headerNode
   };
@@ -21,9 +23,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   const result = useGetScroll(useScrollHooksProps);
 
   // SSR시 서버에서는 window, document객체가 없기에 예외 처리
-
   useEffect(() => {
     if (typeof window !== "undefined") {
+      if (!hasBeenLoaded) {
+        if (window.innerWidth <= 600) {
+          if (router.pathname != "mobile") {
+            router.push("/mobile");
+          }
+        } else {
+          if (router.pathname != "/") {
+            router.push("/");
+          }
+        }
+      }
+
+      setHasBeenLoaded(true);
+
       const handleResize = () => {
         if (window.innerWidth <= 600) {
           if (router.pathname != "mobile") {
