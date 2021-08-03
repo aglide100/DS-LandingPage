@@ -12,7 +12,7 @@ const DepartmentSection: React.FC<{}> = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center mt-20 mb-20">
+    <div className="flex flex-col justify-center mt-20 mb-20 pt-28">
       <div className="w-full">
         <Fade bottom triggerOnce={false} delay={100}>
           <div className="flex flex-col items-center">
@@ -20,7 +20,7 @@ const DepartmentSection: React.FC<{}> = () => {
               className="w-16 h-16 rounded-full"
               style={{
                 boxShadow: "0px 30px 25px 0 rgba(0, 0, 0, 0.4)",
-                backgroundColor: "#d00c27",
+                backgroundColor: "#d00c27"
               }}
             />
 
