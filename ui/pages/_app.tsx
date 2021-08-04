@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between">
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
