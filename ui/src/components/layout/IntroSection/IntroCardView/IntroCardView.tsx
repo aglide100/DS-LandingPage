@@ -17,7 +17,7 @@ const IntroCardView: React.FC<{}> = () => {
           <span
             className="text-6xl font-bold"
             style={{
-              textShadow: "0px 5px 15px rgba(0, 0, 0, 0.35)",
+              textShadow: "0px 5px 15px rgba(0, 0, 0, 0.35)"
             }}
           >
             소프트웨어 융합대학
