@@ -52,6 +52,11 @@ module.exports = {
       fontSize: {
         bg: "12vw",
       },
+
+      boxShadow: {
+        'self': '0 30px 45px -12px rgba(0, 0, 0, 0.75)',
+      },
+      
     },
   },
   variants: {
@@ -59,6 +64,7 @@ module.exports = {
       maxWidth: ["active", "responsive", "hover", "focus", "group-hover"],
       width: ["active", "responsive", "hover", "focus", "group-hover"],
       textColor: ["active", "responsive", "hover", "focus", "group-hover"],
+      boxShadow: ['active'],
     },
   },
   important: true,

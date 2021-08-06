@@ -44,6 +44,16 @@ const DepartmentSection = dynamic(
   { loading: () => <LoadingComponent />, ssr: false }
 );
 
+const TrophySection = dynamic(
+  () =>
+    import(
+      "../src/components/layout/TrophySection/TrophySection"
+    ).catch((err) => {
+      return () => <LoadingError>{err}</LoadingError>;
+    }),
+  { loading: () => <LoadingComponent />, ssr: false }
+);
+
 export default function Home() {
   return (
     <div className="w-full flex flex-col content-around">
@@ -58,7 +68,7 @@ export default function Home() {
           <DepartmentSection />
         </InterViewSectionWrapper>
         <TrophySectionWrapper>
-          <span>주요성과</span>
+          <TrophySection />
         </TrophySectionWrapper>
       </div>
     </div>
