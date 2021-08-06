@@ -26,40 +26,36 @@ const TrophySection: React.FC<{}> = () => {
         </div>
       </div>
       
-      <div className="pt-32 mx-20 flex flex-col justify-center">
+      <div className="pt-32 mb-20 mx-20 flex flex-col justify-center">
         <div className="mt-10 flex flex-wrap pt-16">
 
-          <div className="w-1/4 h-80 content-center text-center bg-red-600">            
+          <div className="w-96 h-96 content-center text-center bg-ds_red-1">            
           </div >
-          <div className="w-1/4 h-80 content-center text-center pt-36 text-5xl">
+          <div className="w-96 h-96 content-center text-center pt-36 text-5xl">
             상상스퀘어
           </div>
 
-          <div className="w-1/4 h-80 content-center text-center bg-red-600">
+          <div className="w-96 h-96 content-center text-center bg-ds_red-1">
           </div>
-          <div className="w-1/4 h-80 content-center text-center pt-36 text-5xl">
+          <div className="w-96 h-96 content-center text-center pt-36 text-5xl">
             우수한 기자재
           </div>
 
-          <div className="w-1/4 h-80 content-center text-center pt-36">
+          <div className="w-96 h-96 content-center text-center pt-36">
             <div className="">학생들의 창의교육을 완성</div>
             <div className="text-5xl">Fab Lab</div>
           </div>
-          <div className="w-1/4 h-80 content-center text-center bg-red-600">
+          <div className="w-96 h-96 content-center text-center bg-ds_red-1">
             1
           </div>
 
-          <div className="w-1/4 h-80 content-center text-center pt-36 text-5xl">
+          <div className="w-96 h-96 content-center text-center pt-36 text-5xl">
             AI+X 융합연구소
           </div>
-          <div className="w-1/4 h-80 content-center text-center bg-red-600">
+          <div className="w-96 h-96 content-center text-center bg-ds_red-1">
           </div>
         </div>
       </div>
-      <div className="mb-96" />
-      
-      {/* <div className="mb-96"></div>
-      <CardContainer2 cardViewList={cardViewContainerProps} /> */}
     </div>
   );
 };
