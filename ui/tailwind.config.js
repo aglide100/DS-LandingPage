@@ -57,11 +57,6 @@ module.exports = {
         'self': '0 30px 45px -12px rgba(0, 0, 0, 0.75)',
       },
       
-      backgroundColor: theme => ({
-          ds_red: {
-            1: "#d1112c",
-          },
-       })
     },
   },
   variants: {
