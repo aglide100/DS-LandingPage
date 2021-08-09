@@ -6,6 +6,19 @@ import InterViewSectionWrapper from "../../src/components/layout/InterViewSectio
 import TrophySectionWrapper from "../../src/components/layout/TrophySectionWrapper/TrophySectionWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 
+const sectionVariants = {
+  down: {
+    y: -1500,
+    zIndex: 0
+  },
+  show: { y: 0, zIndex: 1 },
+  exit: { y: 0, zIndex: 0 },
+  up: {
+    y: 1500,
+    zIndex: 0
+  }
+};
+
 const IntroSection = dynamic(
   () =>
     import("../../src/components/layout/IntroSection/IntroSection").catch(
@@ -81,14 +94,19 @@ const SecondSection = (
   </motion.div>
 );
 
-const ThirdSection: React.FC<{ children: React.ReactNode }> = props => {
+const ThirdSection: React.FC<{
+  children: React.ReactNode;
+  prevPage: number;
+  page: number;
+}> = props => {
   return (
     <motion.li
       className="absolute top-0 left-0 w-full h-screen"
-      initial={{ y: -1000 }}
-      animate={{ y: 0, zIndex: 1 }}
-      exit={{ y: 1000, zIndex: 1 }}
-      transition={{ duration: 1 }}
+      variants={sectionVariants}
+      initial={props.prevPage > props.page ? "up" : "down"}
+      animate="show"
+      exit="exit"
+      transition={{ duration: 0.7 }}
     >
       <div className="w-full h-screen">
         <TrophySectionWrapper>{props.children}</TrophySectionWrapper>
@@ -100,37 +118,21 @@ const ThirdSection: React.FC<{ children: React.ReactNode }> = props => {
 export default function Home() {
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [page, setPage] = useState(0);
+  const [prevPage, setPrevPage] = useState(0);
 
-  async function wheelEvtHandler(e) {
-    e.preventDefault();
-
-    if (e.deltaY > 0) {
-      if (page != lastPage) {
-        setPage(page + 1);
-      }
-    } else if (e.deltaY < 0) {
-      if (page != 0) {
-        setPage(page - 1);
-      }
+  function pageIncrease() {
+    setPrevPage(page);
+    if (page != lastPage) {
+      setPage(page + 1);
     }
-
-    console.log(page);
   }
 
-  const debounceWheelEvt = e => {
-    if (timer) {
-      clearTimeout(timer);
+  function pageDecrease() {
+    setPrevPage(page);
+    if (page != 0) {
+      setPage(page - 1);
     }
-
-    const newTimer = setTimeout(async () => {
-      try {
-        await wheelEvtHandler(e);
-      } catch (error) {
-        console.log("error!", error);
-      }
-    }, 250);
-    setTimer(newTimer);
-  };
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -152,6 +154,49 @@ export default function Home() {
     }
   });
 
+  async function wheelEvtHandler(e) {
+    e.preventDefault();
+
+    if (e.deltaY > 0) {
+      pageIncrease();
+    } else if (e.deltaY < 0) {
+      pageDecrease();
+    }
+
+    console.log(page);
+  }
+
+  async function touchStartEvtHandler(e) {
+    e.preventDefault();
+    setTouchYpos(e.changedTouches[0].clientY);
+  }
+
+  async function touchEndEvtHandler(e) {
+    e.preventDefault();
+    if (touchYpos > e.changedTouches[0].clientY + 5) {
+      pageDecrease();
+    } else if (touchYpos < e.changedTouches[0].clientY + 5) {
+      if (page != lastPage) {
+        setPage(page + 1);
+      }
+    }
+  }
+
+  const debounceWheelEvt = e => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    const newTimer = setTimeout(async () => {
+      try {
+        await wheelEvtHandler(e);
+      } catch (error) {
+        console.log("error!", error);
+      }
+    }, 250);
+    setTimer(newTimer);
+  };
+
   const [touchYpos, setTouchYpos] = useState(0);
 
   return (
@@ -161,67 +206,61 @@ export default function Home() {
         debounceWheelEvt(e);
       }}
       onTouchStart={e => {
-        setTouchYpos(e.changedTouches[0].clientY);
+        touchStartEvtHandler(e);
       }}
       onTouchEnd={e => {
-        if (touchYpos > e.changedTouches[0].clientY) {
-          if (page != lastPage) {
-            setPage(page + 1);
-          }
-        } else {
-          if (page != 0) {
-            setPage(page - 1);
-          }
-        }
-      }}
-      onKeyDown={e => {
-        e.preventDefault();
-        if (page != lastPage) {
-          setPage(page + 1);
-        }
-      }}
-      onKeyUp={e => {
-        e.preventDefault();
-        if (page != 0) {
-          setPage(page - 1);
-        }
+        touchEndEvtHandler(e);
       }}
     >
       <motion.ul className="w-full h-screen">
         <AnimatePresence>
           {page == 0 && (
-            <ThirdSection key="0">
-              <div className="text-5xl">1</div>
+            <ThirdSection prevPage={prevPage} page={page} key="0">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">1</div>
+              </div>
             </ThirdSection>
           )}
           {page == 1 && (
-            <ThirdSection key="1">
-              <div className="text-5xl">2</div>
+            <ThirdSection prevPage={prevPage} page={page} key="1">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">2</div>
+              </div>
             </ThirdSection>
           )}
           {page == 2 && (
-            <ThirdSection key="2">
-              <div className="text-5xl">3</div>
+            <ThirdSection prevPage={prevPage} page={page} key="2">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">3</div>
+              </div>
             </ThirdSection>
           )}
           {page == 3 && (
-            <ThirdSection key="3">
-              <div className="text-5xl">4</div>
+            <ThirdSection prevPage={prevPage} page={page} key="3">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">4</div>
+              </div>
             </ThirdSection>
           )}
           {page == 4 && (
-            <ThirdSection key="4">
-              <div className="text-5xl">5</div>
+            <ThirdSection prevPage={prevPage} page={page} key="4">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">5</div>
+              </div>
             </ThirdSection>
           )}
           {page == 5 && (
-            <ThirdSection key="5">
-              <div className="text-5xl">6</div>
+            <ThirdSection prevPage={prevPage} page={page} key="5">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">6</div>
+              </div>
             </ThirdSection>
           )}
           {page == 6 && (
-            <ThirdSection key="6">
-              <div className="text-5xl">7</div>
+            <ThirdSection prevPage={prevPage} page={page} key="6">
+              <div className="bg-">
+                <div className="text-5xl absolute top-52">7</div>
+              </div>
             </ThirdSection>
           )}
         </AnimatePresence>
