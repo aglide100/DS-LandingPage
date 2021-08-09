@@ -2,14 +2,10 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import CardView, { CardViewProps } from "./CardView/CardView";
 import classNames from "classnames";
+import CardData from "../CardData";
 
 export type CardContainerProps = {
-  cardViewList: CardContainerItemProps[];
-};
-
-export type CardContainerItemProps = {
-  videoID: string;
-  isYoutube: boolean;
+  cardViewList: CardData[];
 };
 
 const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
@@ -17,7 +13,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
 
   const onSelect = (selectedVideoID: string, order: number) => {
     const offsetOrder = (cardViewListItem.length - 1) / 2;
-    const list = cardViewListItem.map((cardView) => {
+    const list = cardViewListItem.map(cardView => {
       if (cardView.videoID == selectedVideoID) {
         cardView.isOpen = !cardView.isOpen;
         cardView.order = offsetOrder;
@@ -48,7 +44,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
   };
 
   const onHover = () => {
-    const list = cardViewListItem.map((cardView) => {
+    const list = cardViewListItem.map(cardView => {
       cardView.isFirst = false;
       return cardView;
     });
@@ -65,7 +61,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
         isFirst: true,
         videoID: cardView.videoID,
         isYoutube: cardView.isYoutube,
-        order: index,
+        order: index
       };
     }
   );
@@ -74,11 +70,12 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
     initCardViewList
   );
 
-  const cardViewListItems = cardViewListItem.map((cardView) => {
+  const cardViewListItems = cardViewListItem.map(cardView => {
     return (
       <CardView
         key={cardView.videoID}
         videoID={cardView.videoID}
+        isYoutube={cardView.isYoutube}
         isOpen={cardView.isOpen}
         order={cardView.order}
         isFirst={cardView.isFirst}
@@ -93,7 +90,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
       className={classNames(
         "flex flex-row flex-nowrap justify-around px-48 hover:px-0",
         {
-          "w-screen left-40": isOpen,
+          "w-screen left-40": isOpen
         }
       )}
     >

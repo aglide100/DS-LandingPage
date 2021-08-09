@@ -1,19 +1,14 @@
 import { motion, AnimateSharedLayout } from "framer-motion";
 import React, { useState } from "react";
-import CardView2, { CardView2Props } from "./CardView/CardViewForMobile";
+import CardView, { CardViewProps } from "./CardView/CardViewForMobile";
+import CardData from "../CardData";
 
 export type CardContainerProps = {
-  cardViewList: CardContainerItemProps[];
+  cardViewList: CardData[];
 };
-
-export type CardContainerItemProps = {
-  videoID: string;
-  isYoutube: boolean;
-};
-
 const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
   const onSelect = (selectedVideoID: string) => {
-    const list = cardViewListItem.map((cardView) => {
+    const list = cardViewListItem.map(cardView => {
       if (cardView.videoID == selectedVideoID) {
         cardView.isOpen = !cardView.isOpen;
         cardView.order = cardViewListItem.length;
@@ -29,25 +24,25 @@ const CardContainer: React.FC<CardContainerProps> = ({ cardViewList }) => {
     setCardViewListItem(list);
   };
 
-  const initCardViewList: CardView2Props[] = cardViewList.map(
+  const initCardViewList: CardViewProps[] = cardViewList.map(
     (cardView, index) => {
       return {
         isOpen: false,
         onSelect: onSelect,
         videoID: cardView.videoID,
         isYoutube: cardView.isYoutube,
-        order: index,
+        order: index
       };
     }
   );
 
-  const [cardViewListItem, setCardViewListItem] = useState<CardView2Props[]>(
+  const [cardViewListItem, setCardViewListItem] = useState<CardViewProps[]>(
     initCardViewList
   );
 
-  const cardViewListItems = cardViewListItem.map((cardView) => {
+  const cardViewListItems = cardViewListItem.map(cardView => {
     return (
-      <CardView2
+      <CardView
         key={cardView.videoID}
         videoID={cardView.videoID}
         isYoutube={cardView.isYoutube}

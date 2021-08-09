@@ -3,15 +3,15 @@ import React from "react";
 import ReactPlayer from "react-player";
 import classNames from "classnames";
 import Image from "next/image";
+import CardData from "../../CardData";
 
-export type CardViewProps = {
-  videoID: string;
+export interface CardViewProps extends CardData {
   isOpen: boolean;
   order: number;
   isFirst: boolean;
   onSelect: (videoID: string, order: number) => void;
   onHover: () => void;
-};
+}
 
 // const playbackVariants = {
 //   hover: {
@@ -27,16 +27,16 @@ const cardVariants = {
     width: "750px",
     height: "100px",
     transition: {
-      duration: 1,
-    },
+      duration: 1
+    }
   },
   collapsed: {
     width: "150px",
     hight: "400px",
     transition: {
-      duration: 1,
-    },
-  },
+      duration: 1
+    }
+  }
 };
 
 const contentVariants = {
@@ -44,17 +44,17 @@ const contentVariants = {
     opacity: 1,
     transition: {
       delay: 0.5,
-      duration: 0.5,
-    },
+      duration: 0.5
+    }
   },
   hidden: {
     maxWidth: "750px",
     maxHeight: "900px",
     opacity: 0,
     transition: {
-      duration: 0.5,
-    },
-  },
+      duration: 0.5
+    }
+  }
 };
 
 const CardView: React.FC<CardViewProps> = ({
@@ -63,15 +63,15 @@ const CardView: React.FC<CardViewProps> = ({
   order,
   isFirst,
   onSelect,
-  onHover,
+  onHover
 }) => {
   return (
     <motion.li
       layout
       className={classNames("cursor-pointer order-" + order, {
-        "flex-nowrap": isOpen,
+        "flex-nowrap": isOpen
       })}
-      onMouseEnter={(ev) => {
+      onMouseEnter={ev => {
         ev.preventDefault();
         {
           isFirst ? onHover() : null;
@@ -105,7 +105,7 @@ const CardView: React.FC<CardViewProps> = ({
                 alt={videoID}
                 layout="fill"
                 objectFit="cover"
-                onClick={(ev) => {
+                onClick={ev => {
                   ev.preventDefault();
                   onSelect(videoID, order);
                 }}
@@ -120,7 +120,7 @@ const CardView: React.FC<CardViewProps> = ({
               animate="show"
               exit="hidden"
               className="w-full"
-              onKeyPress={(ev) => {
+              onKeyPress={ev => {
                 ev.preventDefault();
                 if (ev.key === "esc") {
                   onSelect(videoID, order);
