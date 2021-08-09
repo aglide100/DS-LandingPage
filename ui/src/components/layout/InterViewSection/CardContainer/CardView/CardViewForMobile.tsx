@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import classNames from "classnames";
 import Image from "next/image";
 
-export type CardView2Props = {
+export type CardViewProps = {
   videoID: string;
   isYoutube: boolean;
   isOpen: boolean;
@@ -17,23 +17,23 @@ const contentVariants = {
     opacity: 1,
     transition: {
       delay: 0.5,
-      duration: 0.5,
-    },
+      duration: 0.5
+    }
   },
   hidden: {
     opacity: 0,
     transition: {
-      duration: 0.3,
-    },
-  },
+      duration: 0.3
+    }
+  }
 };
 
-const CardView2: React.FC<CardView2Props> = ({
+const CardView: React.FC<CardViewProps> = ({
   videoID,
   isYoutube,
   isOpen,
   order,
-  onSelect,
+  onSelect
 }) => {
   return (
     <motion.li
@@ -41,7 +41,7 @@ const CardView2: React.FC<CardView2Props> = ({
       initial={{ borderRadius: 10 }}
       className={classNames("border border-solid flex-initial order-", {
         "flex-grow": isOpen,
-        "flex-none": !isOpen,
+        "flex-none": !isOpen
       })}
     >
       <motion.div>
@@ -49,7 +49,7 @@ const CardView2: React.FC<CardView2Props> = ({
           <motion.div
             className={classNames("relative overflow-auto", {
               "w-full h-36": isOpen,
-              "w-36 h-96": !isOpen,
+              "w-36 h-96": !isOpen
             })}
           >
             <Image
@@ -58,7 +58,7 @@ const CardView2: React.FC<CardView2Props> = ({
               alt={videoID}
               layout="fill"
               objectFit="fill"
-              onClick={(ev) => {
+              onClick={ev => {
                 onSelect(videoID);
               }}
             />
@@ -74,7 +74,7 @@ const CardView2: React.FC<CardView2Props> = ({
                 exit="hidden"
               >
                 <div
-                  onClick={(e) => {
+                  onClick={e => {
                     e.preventDefault();
                     onSelect(videoID);
                   }}
@@ -97,4 +97,4 @@ const CardView2: React.FC<CardView2Props> = ({
   );
 };
 
-export default CardView2;
+export default CardView;

@@ -16,8 +16,8 @@ const variants = {
     transition: {
       type: "spring",
       stiffness: 20,
-      restDelta: 2,
-    },
+      restDelta: 2
+    }
   }),
   closed: {
     clipPath: "circle(30px at calc(100% - 0px) 10px)",
@@ -25,15 +25,15 @@ const variants = {
       delay: 0.3,
       type: "spring",
       stiffness: 400,
-      damping: 40,
-    },
-  },
+      damping: 40
+    }
+  }
 };
 
 const Header: React.FC<HeaderProps> = ({
   isShow,
   scrollDirection,
-  scrollY,
+  scrollY
 }) => {
   const [isIconClick, setIconClick] = useState<boolean>(false);
 
@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({
             "bg-gray-300 bg-opacity-50 -translate-y-4 hover:translate-y-0 hover:bg-white hover:bg-opacity-100":
               scrollY > 100 && scrollDirection == "up" && !isIconClick,
             "bg-white translate-y-0 box-border":
-              scrollY > 100 && scrollDirection == "down" && !isIconClick,
+              scrollY > 100 && scrollDirection == "down" && !isIconClick
           }
         )}
       >
@@ -60,14 +60,14 @@ const Header: React.FC<HeaderProps> = ({
               "text-black translate-y-0 box-border":
                 isIconClick || (scrollY < 100 && scrollDirection == "down"),
               "text-gray-300 group-hover:text-black hover:translate-y-0":
-                scrollY > 100 && scrollDirection == "up" && !isIconClick,
+                scrollY > 100 && scrollDirection == "up" && !isIconClick
             }
           )}
         >
           <div
             className={classNames("cursor-pointer w-52", {
               "bg-opacity-50":
-                scrollY > 100 && scrollDirection == "up" && !isIconClick,
+                scrollY > 100 && scrollDirection == "up" && !isIconClick
             })}
           >
             <Logo />
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
               "cursor-pointer menu-trigger type12 transform translate-y-4 mr-2 sm:mr-6 z-50",
               {
                 "active-12": isIconClick,
-                "": !isIconClick,
+                "": !isIconClick
               }
             )}
             // href="#"
@@ -88,17 +88,17 @@ const Header: React.FC<HeaderProps> = ({
           >
             <span
               className={classNames("bg-black select-none", {
-                "bg-white": isIconClick,
+                "bg-white": isIconClick
               })}
             ></span>
             <span
               className={classNames("bg-black select-none", {
-                "bg-white": isIconClick,
+                "bg-white": isIconClick
               })}
             ></span>
             <span
               className={classNames("bg-black select-none", {
-                "bg-white": isIconClick,
+                "bg-white": isIconClick
               })}
             ></span>
           </a>
@@ -113,8 +113,7 @@ const Header: React.FC<HeaderProps> = ({
               "bg-opacity-50 -translate-y-10 hover:translate-y-0 hover:bg-opacity-100 h-110vh":
                 scrollY > 100 && scrollDirection == "up" && !isIconClick,
               "-translate-y-10 box-border h-110vh ":
-                scrollY > 100 && scrollDirection == "down" && !isIconClick,
-              // "bg-opacity-0": scrollY > 100 && !isIconClick,
+                scrollY > 100 && scrollDirection == "down" && !isIconClick
             }
           )}
           variants={variants}

@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <div className="flex flex-col justify-between">
+    <>
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <title>Hello!</title>
       </Head>
-      <div>
+      <div className="flex flex-col justify-between">
         <div ref={headerNode}>
           <Header {...result}></Header>
         </div>
@@ -95,7 +95,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="z-30">
         <Footer></Footer>
       </div>
-    </div>
+    </>
   );
 }
 
